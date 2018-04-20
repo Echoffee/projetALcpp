@@ -1,4 +1,4 @@
-#include "../headers/compositeShape.hpp"
+#include <compositeShape.hpp>
 
 void compositeShape::setMemento(IMemento * m)
 {

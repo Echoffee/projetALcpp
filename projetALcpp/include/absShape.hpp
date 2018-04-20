@@ -1,8 +1,7 @@
-#pragma once
 #ifndef ABS_SHAPE_HPP
 #define ABS_SHAPE_HPP
 
-#include "IShape.hpp"
+#include <IShape.hpp>
 #include <vector>
 
 class AbsShape : public IShape{
@@ -11,7 +10,7 @@ protected:
 	int color;
 
 public:
-	// Hérité via Shape
+	// Shape methods
 	virtual void addShape(IShape * shape) override;
 };
 

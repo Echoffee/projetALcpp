@@ -1,4 +1,4 @@
-#include "../headers/absShape.hpp"
+#include <absShape.hpp>
 
 void AbsShape::addShape(IShape * shape)
 {

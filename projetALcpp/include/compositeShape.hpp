@@ -1,15 +1,14 @@
-#pragma once
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include "IShape.hpp"
+#include <IShape.hpp>
 
 class compositeShape : public IShape {
 private:
 	std::vector<IShape>* shapes;
 
 public:
-	// Hérité via Shape
+	// Shape methods
 	virtual void setMemento(IMemento * m) override;
 
 	virtual IMemento * createMemento() override;

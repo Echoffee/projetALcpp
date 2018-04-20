@@ -1,10 +1,7 @@
-#pragma once
 #ifndef IVISITOR_HPP
 #define IVISITOR_HPP
 
-#include "IShape.hpp"
-#include "absShape.hpp"
-//#include "compositeShape.hpp"
+#include <absShape.hpp>
 
 class IVisitor {
 public:

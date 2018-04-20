@@ -1,8 +1,7 @@
-#pragma once
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include "IMemento.hpp"
+#include <IMemento.hpp>
 #include <vector>
 
 
