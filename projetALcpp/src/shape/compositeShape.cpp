@@ -1,23 +1,40 @@
 #include <compositeShape.hpp>
 
-void compositeShape::setMemento(IMemento * m)
-{
+CompositeShape::CompositeShape() {
+
 }
 
-IMemento * compositeShape::createMemento()
-{
-	return nullptr;
+CompositeShape::CompositeShape(std::vector<IShape*> shapes) {
+	this->shapes = shapes;
 }
 
-void compositeShape::addShape(IShape * shape)
-{
+void CompositeShape::setMemento(IMemento * m){
+	MementoComposite* savedState = (MementoComposite*)m;
+	this->shapes = savedState->savedShapes;
 }
 
-void compositeShape::draw()
-{
+IMemento * CompositeShape::createMemento(){
+	std::vector<IShape*> newShapes;
+	for (auto shape : shapes) {
+		newShapes.push_back(shape->clone);
+	}
+	MementoComposite* state = new MementoComposite(newShapes);
+	return state;
 }
 
-IShape * compositeShape::clone()
-{
-	return nullptr;
+void CompositeShape::addShape(IShape* shape){
+	shapes.push_back(shape);
+}
+
+void CompositeShape::draw(){
+
+}
+
+IShape* CompositeShape::clone(){
+	std::vector<IShape*> newShapes;
+	for (auto shape : shapes) {
+		newShapes.push_back(shape->clone);
+	}
+
+	return new CompositeShape(newShapes);
 }

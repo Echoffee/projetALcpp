@@ -19,12 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Memento\MementoRectangle.cpp" />
     <ClCompile Include="src\shape\absShape.cpp" />
     <ClCompile Include="src\shape\compositeShape.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\shape\rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\absShape.hpp" />
+    <ClInclude Include="include\compositeShape.hpp" />
+    <ClInclude Include="include\IDrawingApi.hpp" />
+    <ClInclude Include="include\IMemento.hpp" />
+    <ClInclude Include="include\IShape.hpp" />
+    <ClInclude Include="include\IVisitor.hpp" />
+    <ClInclude Include="include\mementoRectangle.hpp" />
+    <ClInclude Include="include\rectangle.hpp" />
     <ClInclude Include="src\headers\absShape.hpp" />
     <ClInclude Include="src\headers\compositeShape.hpp" />
     <ClInclude Include="src\headers\IMemento.hpp" />
@@ -105,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Romain\source\repos\projetALcpp\projetALcpp\include;C:\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

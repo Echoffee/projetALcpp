@@ -2,23 +2,25 @@
 #define COMPOSITE_SHAPE_HPP
 
 #include <IShape.hpp>
+#include <MementoComposite.hpp>
 
-class compositeShape : public IShape {
+class CompositeShape : public IShape {
 private:
-	std::vector<IShape>* shapes;
+	std::vector<IShape*> shapes;
 
 public:
+	CompositeShape();
+	CompositeShape(std::vector<IShape*> shapes);
 	// Shape methods
-	virtual void setMemento(IMemento * m) override;
+	virtual void setMemento(IMemento* m) override;
 
-	virtual IMemento * createMemento() override;
+	virtual IMemento* createMemento() override;
 
-	virtual void addShape(IShape * shape) override;
+	virtual void addShape(IShape* shape) override;
 
 	virtual void draw() override;
 
-	virtual IShape * clone() override;
+	virtual IShape* clone() override;
 };
-
 
 #endif
