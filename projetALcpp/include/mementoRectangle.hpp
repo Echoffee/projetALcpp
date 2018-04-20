@@ -6,11 +6,14 @@
 
 class MementoRectangle : public IMemento {
 	//friend <classe qui a acces aux privates>
-private:
-	std::vector<int> points;
+	friend class Rectangle;
 
+
+private:
+	MementoRectangle(std::vector<int> points, int color);
+	std::vector<int> points;
+	int color;
 
 };
-
 
 #endif
