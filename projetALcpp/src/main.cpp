@@ -27,6 +27,8 @@ int main()
 
 	IShape* copyRect = rect->clone();
 
+	printf("hello debord\n");
+
 
 	return 0;
 }

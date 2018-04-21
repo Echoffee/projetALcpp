@@ -21,6 +21,10 @@ public:
 	virtual void draw() override;
 
 	virtual IShape* clone() override;
+
+	virtual Vector2* getPosition() override;
+
+	virtual Vector2* getOrigin() override;
 };
 
 #endif

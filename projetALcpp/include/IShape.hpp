@@ -8,7 +8,7 @@
 
 class IShape {
 protected:
-	std::vector<int>* rotationCenter;
+	Vector2* rotationCenter;
 
 public:
 	//Generic draw method (as an entity)

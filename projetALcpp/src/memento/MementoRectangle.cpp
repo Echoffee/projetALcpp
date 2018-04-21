@@ -1,7 +1,7 @@
 #include <mementoRectangle.hpp>
 
-MementoRectangle::MementoRectangle(std::vector<int> points, int color) {
-	std::vector<int> savedPoints(points);
+MementoRectangle::MementoRectangle(std::vector<Vector2*> points, int color) {
+	std::vector<Vector2*> savedPoints(points);
 	this->points = savedPoints;
 	this->color = color;
 }
