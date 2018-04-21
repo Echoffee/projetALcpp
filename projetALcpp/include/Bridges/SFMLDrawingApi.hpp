@@ -1,14 +1,14 @@
-#ifndef SFMLAPI_HPP
-#define SFMLAPI_HPP
+#ifndef SFMLDRAWINGAPI_HPP
+#define SFMLDRAWINGAPI_HPP
 
 #include <Bridges/IDrawingApi.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class SFMLApi : public IDrawingApi {
+class SFMLDrawingApi : public IDrawingApi {
 public:
-	SFMLApi(sf::RenderWindow* w);
+	SFMLDrawingApi(sf::RenderWindow* w);
 
 	// IDrawingApi methods
 	void drawRectangle(Rectangle* rectangle);
@@ -24,5 +24,5 @@ private:
 
 };
 
-#endif // !SFMLAPI_HPP
+#endif // !SFMLDRAWINGAPI_HPP
 

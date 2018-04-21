@@ -1,21 +1,21 @@
-#include <Bridges/SFMLApi.hpp>
+#include <Bridges/SFMLDrawingApi.hpp>
 
-SFMLApi::SFMLApi(sf::RenderWindow* w) {
+SFMLDrawingApi::SFMLDrawingApi(sf::RenderWindow* w) {
 	this->window = w;
 	this->shapes = std::vector<sf::Drawable*>();
 }
 
-void SFMLApi::clear() {
+void SFMLDrawingApi::clear() {
 	this->shapes = std::vector<sf::Drawable*>();
 }
 
-void SFMLApi::render() {
+void SFMLDrawingApi::render() {
 	for (auto s : shapes) {
 		window->draw(*s);
 	}
 }
 
-void SFMLApi::drawRectangle(Rectangle* rectangle) {
+void SFMLDrawingApi::drawRectangle(Rectangle* rectangle) {
 	sf::RectangleShape* s = new sf::RectangleShape();
 	s->setPosition(getPosition(rectangle));
 	s->setOrigin(getOrigin(rectangle));
