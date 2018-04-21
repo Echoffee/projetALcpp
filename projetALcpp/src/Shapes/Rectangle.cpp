@@ -18,13 +18,13 @@ Rectangle::~Rectangle() {
 		delete point;
 }
 
-void Rectangle::setMemento(IMemento * m){
+void Rectangle::setMemento(Memento * m){
 	MementoRectangle* savedState = (MementoRectangle*)m;
 	color = savedState->color;
 	points = savedState->points;
 }
 
-IMemento * Rectangle::createMemento(){
+Memento * Rectangle::createMemento(){
 	std::vector<Vector2*> savedPoints(points.size());
 	for (int i = 0; i < points.size(); ++i) {
 		savedPoints.at(i) = new Vector2(points.at(i)->x, points.at(i)->y);
@@ -51,7 +51,7 @@ Vector2* Rectangle::getPosition() {
 }
 
 
-IShape * Rectangle::clone(){
+Shape * Rectangle::clone(){
 	std::vector<Vector2*> newPoints(points);
 	Rectangle* r = new Rectangle(newPoints, color);
 	//memcpy(r, this, sizeof(this));

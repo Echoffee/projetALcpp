@@ -1,12 +1,12 @@
 #ifndef SFMLDRAWINGAPI_HPP
 #define SFMLDRAWINGAPI_HPP
 
-#include <Bridges/IDrawingApi.hpp>
+#include <Bridges/DrawingApi.hpp>
 
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class SFMLDrawingApi : public IDrawingApi {
+class SFMLDrawingApi : public DrawingApi {
 public:
 	SFMLDrawingApi(sf::RenderWindow* w);
 	~SFMLDrawingApi();

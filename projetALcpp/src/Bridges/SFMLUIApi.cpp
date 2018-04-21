@@ -1,4 +1,4 @@
-#include <Bridges/SFMLRenderingApi.hpp>
+#include <Bridges/SFMLUIApi.hpp>
 
 SFMLUIApi::SFMLUIApi(sf::RenderWindow* w) {
 	this->window = w;

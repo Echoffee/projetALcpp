@@ -1,7 +1,7 @@
 #include <Command/CommandTranslate.hpp>
 #include <Visitor/VisitorTranslate.hpp>
 
-CommandTranslate::CommandTranslate(float x, float y, IShape* shape) {
+CommandTranslate::CommandTranslate(float x, float y, Shape* shape) {
 	this->shape = shape;
 	direction = new Vector2(x, y);
 }

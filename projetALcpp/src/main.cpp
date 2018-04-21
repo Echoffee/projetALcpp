@@ -28,7 +28,7 @@ int main()
 
 	//Rectangle* rect = new Rectangle(10, 10, 25, 30);
 
-	//IShape* copyRect = rect->clone();
+	//Shape* copyRect = rect->clone();
 
 	//printf("hello debord\n");
 

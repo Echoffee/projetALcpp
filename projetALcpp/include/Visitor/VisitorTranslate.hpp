@@ -1,17 +1,17 @@
 #ifndef VISITOR_TRANSLATE_HPP
 #define VISITOR_TRANSLATE_HPP
 
-#include <Visitor/IVisitor.hpp>
+#include <Visitor/Visitor.hpp>
 
-class VisitorTranslate : public IVisitor {
+class VisitorTranslate : public Visitor {
 private:
 	Vector2* direction;
 public:
-	// IVisitor
+	// Visitor
 	VisitorTranslate(Vector2* direction);
 	~VisitorTranslate();
 
-	void visit(AbsShape* shape) override;
+	void visit(AbstractShape* shape) override;
 
 	void visit(CompositeShape* shapes) override;
 

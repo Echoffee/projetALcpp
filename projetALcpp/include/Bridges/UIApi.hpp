@@ -1,9 +1,9 @@
-#ifndef IRENDERINGAPI_HPP
-#define IRENDERINGAPI_HPP
+#ifndef IUIAPI_HPP
+#define IUIAPI_HPP
 
 #include <Events/Event.hpp>
 
-class IUIApi {
+class UIApi {
 public:
 	virtual void displayWindow() = 0;
 	virtual void closeWindow() = 0;
@@ -11,4 +11,4 @@ public:
 	virtual bool getEvent(Event* event) = 0;
 };
 
-#endif // !IRENDERINGAPI_HPP
+#endif // !IUIAPI_HPP

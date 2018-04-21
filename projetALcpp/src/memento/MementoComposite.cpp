@@ -1,7 +1,7 @@
 #include <Memento/MementoComposite.hpp>
 
-MementoComposite::MementoComposite(std::vector<IShape*> shapes) {
-	std::vector<IShape*> newShapes(shapes);
+MementoComposite::MementoComposite(std::vector<Shape*> shapes) {
+	std::vector<Shape*> newShapes(shapes);
 	this->savedShapes = newShapes;
 }
 

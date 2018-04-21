@@ -1,6 +1,6 @@
 #include <Factories/SFMLApiFactory.hpp>
 
-#include <Bridges/SFMLRenderingApi.hpp>
+#include <Bridges/SFMLUIApi.hpp>
 #include <Bridges/SFMLDrawingApi.hpp>
 SFMLApiFactory::SFMLApiFactory() {
 	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "ohayou");
@@ -11,11 +11,11 @@ SFMLApiFactory::~SFMLApiFactory() {
 }
 
 
-IDrawingApi* SFMLApiFactory::createDrawingApi() {
+DrawingApi* SFMLApiFactory::createDrawingApi() {
 	return new SFMLDrawingApi(this->window);
 }
 
-IUIApi* SFMLApiFactory::createRenderingApi() {
+UIApi* SFMLApiFactory::createRenderingApi() {
 	return new SFMLUIApi(this->window);
 }
 

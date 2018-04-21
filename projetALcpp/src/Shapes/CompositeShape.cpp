@@ -5,7 +5,7 @@ CompositeShape::CompositeShape() {
 	rotationCenter = new Vector2(0, 0);
 }
 
-CompositeShape::CompositeShape(std::vector<IShape*> shapes) {
+CompositeShape::CompositeShape(std::vector<Shape*> shapes) {
 	this->shapes = shapes;
 }
 
@@ -14,13 +14,13 @@ CompositeShape::~CompositeShape() {
 		delete shape;
 }
 
-void CompositeShape::setMemento(IMemento * m){
+void CompositeShape::setMemento(Memento * m){
 	MementoComposite* savedState = (MementoComposite*)m;
 	this->shapes = savedState->savedShapes;
 }
 
-IMemento * CompositeShape::createMemento(){
-	std::vector<IShape*> newShapes;
+Memento * CompositeShape::createMemento(){
+	std::vector<Shape*> newShapes;
 	for (auto shape : shapes)
 		newShapes.push_back(shape->clone());
 
@@ -28,7 +28,7 @@ IMemento * CompositeShape::createMemento(){
 	return state;
 }
 
-void CompositeShape::addShape(IShape* shape){
+void CompositeShape::addShape(Shape* shape){
 	shapes.push_back(shape);
 	rotationCenter = this->getPosition();
 }
@@ -52,8 +52,8 @@ Vector2* CompositeShape::getOrigin() {
 	return rotationCenter;
 }
 
-IShape* CompositeShape::clone(){
-	std::vector<IShape*> newShapes;
+Shape* CompositeShape::clone(){
+	std::vector<Shape*> newShapes;
 	for (auto shape : shapes) {
 		newShapes.push_back(shape->clone());
 	}
@@ -61,10 +61,10 @@ IShape* CompositeShape::clone(){
 	return new CompositeShape(newShapes);
 }
 
-std::vector<IShape*> CompositeShape::getShapes() {
+std::vector<Shape*> CompositeShape::getShapes() {
 	return shapes;
 }
 
-void CompositeShape::accept(IVisitor* visitor) {
+void CompositeShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 }

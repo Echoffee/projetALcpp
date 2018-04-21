@@ -1,19 +1,19 @@
 #ifndef COMMAND_TRANSLATE_HPP
 #define COMMAND_TRANSLATE_HPP
 
-#include <Command/ICommand.hpp>
-#include <Memento/IMemento.hpp>
-#include <Shapes/IShape.hpp>
+#include <Command/Command.hpp>
+#include <Memento/Memento.hpp>
+#include <Shapes/Shape.hpp>
 #include <Maths/Vector2.hpp>
 
-class CommandTranslate : public ICommand {
+class CommandTranslate : public Command {
 private :
-	IMemento* savedState;
-	IShape* shape;
+	Memento* savedState;
+	Shape* shape;
 	Vector2* direction;
 
 public :
-	CommandTranslate(float x, float y, IShape* shape);
+	CommandTranslate(float x, float y, Shape* shape);
 	~CommandTranslate();
 	//via ICommand
 	virtual void execute() override;

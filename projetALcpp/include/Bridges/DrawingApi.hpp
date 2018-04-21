@@ -3,7 +3,7 @@
 
 #include <Shapes/Rectangle.hpp>
 
-class IDrawingApi {
+class DrawingApi {
 
 public:
 	//Drawing methods

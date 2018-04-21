@@ -1,36 +1,36 @@
 #ifndef APP_HPP
 #define APP_HPP
 
-#include <Factories/IApiFactory.hpp>
+#include <Factories/ApiFactory.hpp>
 #include <Events/Handler.hpp>
 
 //Canvas part
 #include <Application/Canvas.hpp>
-#include <Shapes/IShape.hpp>
+#include <Shapes/Shape.hpp>
 
 class App : Canvas{
 public:
-	App(IApiFactory* factory);
+	App(ApiFactory* factory);
 	~App();
 
 	void run();
 
 	//Canvas stuff
-	std::vector<IShape*> getShapes();
-	std::vector<IShape*> getTools(); //Ces IShape seront des Tools : IShape en fait
+	std::vector<Shape*> getShapes();
+	std::vector<Shape*> getTools(); //Ces Shape seront des Tools : Shape en fait
 	Vector2* getCornerPosition();
 	Vector2* getSize();
 	void closeWindow();
 private:
 
 	//Systeme + IO
-	IDrawingApi* drawingApi;
-	IUIApi* uiApi;
+	DrawingApi* drawingApi;
+	UIApi* uiApi;
 	Handler* eventHandler;	//base of CoR
 
 	//Rendering objects
-	std::vector<IShape*> shapes;
-	std::vector<IShape*> tools;
+	std::vector<Shape*> shapes;
+	std::vector<Shape*> tools;
 
 };
 

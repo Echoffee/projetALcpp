@@ -1,10 +1,10 @@
-#ifndef SFMLRENDERINGAPI_HPP
-#define SFMLRENDERINGAPI_HPP
+#ifndef SFMLUAPI_HPP
+#define SFMLUAPI_HPP
 
-#include <Bridges/IRenderingApi.hpp>
+#include <Bridges/UIApi.hpp>
 #include <SFML/Graphics.hpp>
 
-class SFMLUIApi : public IUIApi {
+class SFMLUIApi : public UIApi {
 public:
 	SFMLUIApi(sf::RenderWindow* w);
 	~SFMLUIApi();
@@ -18,4 +18,4 @@ private:
 };
 
 
-#endif // !SFMLRENDERINGAPI_HPP
+#endif // !SFMLUAPI_HPP

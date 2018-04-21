@@ -1,6 +1,6 @@
 #include <Visitor\VisitorGetPosition.hpp>
 
-#include <Shapes\AbsShape.hpp>
+#include <Shapes\AbstractShape.hpp>
 #include <Shapes\CompositeShape.hpp>
 
 VisitorGetPosition::VisitorGetPosition() {
@@ -12,7 +12,7 @@ VisitorGetPosition::~VisitorGetPosition() {
 	delete center;
 }
 
-void VisitorGetPosition::visit(AbsShape* shape) {
+void VisitorGetPosition::visit(AbstractShape* shape) {
 	++nbShapes;
 	Vector2* point = shape->getPosition();
 	center->x += point->x;

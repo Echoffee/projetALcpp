@@ -1,35 +1,35 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include <Visitor/IVisitor.hpp>
+#include <Visitor/Visitor.hpp>
 #include <Memento/MementoComposite.hpp>
 
-class CompositeShape : public IShape {
+class CompositeShape : public Shape {
 private:
-	std::vector<IShape*> shapes;
+	std::vector<Shape*> shapes;
 
 public:
 	CompositeShape();
-	CompositeShape(std::vector<IShape*> shapes);
+	CompositeShape(std::vector<Shape*> shapes);
 	~CompositeShape();
 	// Shape methods
-	virtual void setMemento(IMemento* m) override;
+	virtual void setMemento(Memento* m) override;
 
-	virtual IMemento* createMemento() override;
+	virtual Memento* createMemento() override;
 
-	virtual void addShape(IShape* shape) override;
+	virtual void addShape(Shape* shape) override;
 
 	virtual void draw() override;
 
-	virtual IShape* clone() override;
+	virtual Shape* clone() override;
 
 	virtual Vector2* getPosition() override;
 
 	virtual Vector2* getOrigin() override;
 
-	virtual void accept(IVisitor* visitor) override;
+	virtual void accept(Visitor* visitor) override;
 
-	std::vector<IShape*> getShapes();
+	std::vector<Shape*> getShapes();
 };
 
 #endif

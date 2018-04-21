@@ -1,9 +1,9 @@
 #ifndef VISITOR_COUNT_SHAPE_HPP
 #define VISITOR_COUNT_SHAPE_HPP
 
-#include <Visitor\IVisitor.hpp>
+#include <Visitor\Visitor.hpp>
 
-class VisitorGetPosition : public IVisitor {
+class VisitorGetPosition : public Visitor {
 private :
 	Vector2* center;
 	int nbShapes;
@@ -11,7 +11,7 @@ private :
 public :
 	VisitorGetPosition();
 	~VisitorGetPosition();
-	virtual void visit(AbsShape* shape) override;
+	virtual void visit(AbstractShape* shape) override;
 	virtual void visit(CompositeShape* shapes) override;
 
 	Vector2* getPosition();

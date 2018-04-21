@@ -1,17 +1,17 @@
 #ifndef MEMENTO_COMPOSITE_HPP
 #define MEMENTO_COMPOSITE_HPP
 
-#include <Memento/IMemento.hpp>
-#include <Shapes/IShape.hpp>
+#include <Memento/Memento.hpp>
+#include <Shapes/Shape.hpp>
 #include <vector>
 
-class MementoComposite : public IMemento {
+class MementoComposite : public Memento {
 	friend class CompositeShape;
 
 private:
-	MementoComposite(std::vector<IShape*> shapes);
+	MementoComposite(std::vector<Shape*> shapes);
 	~MementoComposite();
-	std::vector<IShape*> savedShapes;
+	std::vector<Shape*> savedShapes;
 
 
 };

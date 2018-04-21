@@ -3,7 +3,7 @@
 
 #include<Events/Handlers/HandlerClose.hpp>
 
-App::App(IApiFactory* factory) {
+App::App(ApiFactory* factory) {
 	this->drawingApi = factory->createDrawingApi();
 	this->uiApi = factory->createRenderingApi();
 	this->eventHandler = new HandlerClose();
@@ -42,11 +42,11 @@ void App::run() {
 	}
 }
 
-std::vector<IShape*> App::getShapes() {
+std::vector<Shape*> App::getShapes() {
 	return this->shapes;
 }
 
-std::vector<IShape*> App::getTools() {
+std::vector<Shape*> App::getTools() {
 	return this->tools;
 }
 

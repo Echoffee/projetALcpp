@@ -2,12 +2,12 @@
 #define CANVAS_HPP
 
 #include<vector>
-#include<Shapes/IShape.hpp>
+#include<Shapes/Shape.hpp>
 
 class Canvas {
 public:
-	virtual std::vector<IShape*> getShapes() = 0;
-	virtual std::vector<IShape*> getTools() = 0; //Ces IShape seront des Tools : IShape en fait
+	virtual std::vector<Shape*> getShapes() = 0;
+	virtual std::vector<Shape*> getTools() = 0; //Ces Shape seront des Tools : Shape en fait
 	virtual Vector2* getCornerPosition() = 0;
 	virtual Vector2* getSize() = 0;
 	//TODO :	Add rendering/drawing apis ?
