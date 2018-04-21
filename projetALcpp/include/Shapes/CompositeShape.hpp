@@ -1,8 +1,8 @@
 #ifndef COMPOSITE_SHAPE_HPP
 #define COMPOSITE_SHAPE_HPP
 
-#include <IShape.hpp>
-#include <MementoComposite.hpp>
+#include <Visitor/IVisitor.hpp>
+#include <Memento/MementoComposite.hpp>
 
 class CompositeShape : public IShape {
 private:
@@ -25,6 +25,10 @@ public:
 	virtual Vector2* getPosition() override;
 
 	virtual Vector2* getOrigin() override;
+
+	virtual void accept(IVisitor* visitor) override;
+
+	std::vector<IShape*> getShapes();
 };
 
 #endif

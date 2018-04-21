@@ -1,4 +1,4 @@
-#include <rectangle.hpp>
+#include <Shapes/Rectangle.hpp>
 
 Rectangle::Rectangle(std::vector<Vector2*> points, int color) {
 	this->points = points;

@@ -1,4 +1,4 @@
-#include <compositeShape.hpp>
+#include <Shapes/CompositeShape.hpp>
 
 CompositeShape::CompositeShape() {
 	rotationCenter = new Vector2(0, 0);
@@ -71,4 +71,12 @@ IShape* CompositeShape::clone(){
 	}
 
 	return new CompositeShape(newShapes);
+}
+
+std::vector<IShape*> CompositeShape::getShapes() {
+	return shapes;
+}
+
+void CompositeShape::accept(IVisitor* visitor) {
+	visitor->visit(this);
 }

@@ -1,7 +1,7 @@
 #ifndef ABS_SHAPE_HPP
 #define ABS_SHAPE_HPP
 
-#include <IShape.hpp>
+#include <Visitor/IVisitor.hpp>
 #include <Maths/Vector2.hpp>
 #include <vector>
 
@@ -14,6 +14,8 @@ public:
 	// Shape methods
 	virtual void addShape(IShape * shape) override;
 	virtual Vector2* getOrigin() override;
+	virtual void accept(IVisitor* visitor) override;
+	virtual std::vector<Vector2*> getPoints();
 };
 
 #endif

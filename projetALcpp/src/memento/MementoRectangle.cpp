@@ -1,4 +1,4 @@
-#include <mementoRectangle.hpp>
+#include <Memento/mementoRectangle.hpp>
 
 MementoRectangle::MementoRectangle(std::vector<Vector2*> points, int color) {
 	std::vector<Vector2*> savedPoints(points);

@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <rectangle.hpp>
+#include <Shapes/Rectangle.hpp>
 
 int main()
 {
@@ -29,6 +29,9 @@ int main()
 
 	printf("hello debord\n");
 
+	while (true) {
+		printf("hello world \n");
 
+	}
 	return 0;
 }

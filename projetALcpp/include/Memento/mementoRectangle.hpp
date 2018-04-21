@@ -1,7 +1,7 @@
 #ifndef MEMENTO_RECTANGLE_HPP
 #define MEMENTO_RECTANGLE_HPP
 
-#include <IMemento.hpp>
+#include <Memento/IMemento.hpp>
 #include <Maths/Vector2.hpp>
 #include <vector>
 

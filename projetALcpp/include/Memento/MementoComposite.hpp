@@ -1,8 +1,8 @@
 #ifndef MEMENTO_COMPOSITE_HPP
 #define MEMENTO_COMPOSITE_HPP
 
-#include <IMemento.hpp>
-#include <IShape.hpp>
+#include <Memento/IMemento.hpp>
+#include <Shapes/IShape.hpp>
 #include <vector>
 
 class MementoComposite : public IMemento {

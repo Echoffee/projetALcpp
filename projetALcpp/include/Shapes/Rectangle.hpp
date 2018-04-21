@@ -1,8 +1,8 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
-#include <absShape.hpp>
-#include <mementoRectangle.hpp>
+#include <Shapes/AbsShape.hpp>
+#include <Memento/mementoRectangle.hpp>
 
 class Rectangle : public AbsShape {
 public:
