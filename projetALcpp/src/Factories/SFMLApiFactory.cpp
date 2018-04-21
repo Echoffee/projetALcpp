@@ -11,7 +11,7 @@ IDrawingApi* SFMLApiFactory::createDrawingApi()
 	return new SFMLDrawingApi(this->window);
 }
 
-IRenderingApi* SFMLApiFactory::createRenderingApi() {
-	return new SFMLRenderingApi(this->window);
+IUIApi* SFMLApiFactory::createRenderingApi() {
+	return new SFMLUIApi(this->window);
 }
 

@@ -4,10 +4,13 @@
 #include <Bridges/IRenderingApi.hpp>
 #include <SFML/Graphics.hpp>
 
-class SFMLRenderingApi : public IRenderingApi {
+class SFMLUIApi : public IUIApi {
 public:
-	SFMLRenderingApi(sf::RenderWindow* w);
+	SFMLUIApi(sf::RenderWindow* w);
 	void displayWindow();
+	void closeWindow();
+	bool isRunning();
+	bool getEvent(Event* event);
 
 private:
 	sf::RenderWindow* window;

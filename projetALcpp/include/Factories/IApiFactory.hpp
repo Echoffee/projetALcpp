@@ -8,7 +8,7 @@
 class IApiFactory {
 public:
 	virtual IDrawingApi* createDrawingApi() = 0;
-	virtual IRenderingApi* createRenderingApi() = 0;
+	virtual IUIApi* createRenderingApi() = 0;
 };
 
 #endif // !IAPIFACTORY_HPP

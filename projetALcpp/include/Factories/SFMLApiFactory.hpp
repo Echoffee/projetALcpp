@@ -8,7 +8,7 @@ class SFMLApiFactory : public IApiFactory {
 public:
 	SFMLApiFactory();
 	IDrawingApi* createDrawingApi();
-	IRenderingApi* createRenderingApi();
+	IUIApi* createRenderingApi();
 
 private:
 	sf::RenderWindow* window;

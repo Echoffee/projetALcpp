@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <Shapes/Rectangle.hpp>
 
+
+#include <Application/App.hpp>
+#include <Factories/SFMLApiFactory.hpp>
 int main()
 {
 	/*
@@ -23,15 +26,18 @@ int main()
 	}
 	*/
 
-	Rectangle* rect = new Rectangle(10, 10, 25, 30);
+	//Rectangle* rect = new Rectangle(10, 10, 25, 30);
 
-	IShape* copyRect = rect->clone();
+	//IShape* copyRect = rect->clone();
 
-	printf("hello debord\n");
+	//printf("hello debord\n");
 
-	while (true) {
-		printf("hello world \n");
+	//while (true) {
+	//	//printf("hello world \n");
+	//	scanf(NULL);
+	//}
 
-	}
+	App* app = new App(new SFMLApiFactory());
+	app->run();
 	return 0;
 }

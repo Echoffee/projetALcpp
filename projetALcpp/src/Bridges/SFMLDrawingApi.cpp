@@ -10,23 +10,30 @@ void SFMLDrawingApi::clear() {
 }
 
 void SFMLDrawingApi::render() {
-	for (auto s : shapes) {
+	for (auto s : this->shapes) {
 		window->draw(*s);
 	}
 }
 
-void SFMLApi::drawRectangle(Rectangle* rectangle) {
-	/*sf::RectangleShape* s = new sf::RectangleShape();
-	s->setPosition(getPosition(rectangle));
-	s->setOrigin(getOrigin(rectangle));
+void SFMLDrawingApi::drawRectangle(Rectangle* rectangle) {
+	//sf::RectangleShape* s = new sf::RectangleShape();
+	//s->setPosition(getPosition(rectangle));
+	//s->setOrigin(getOrigin(rectangle));
+	
+	sf::ConvexShape* s = new sf::ConvexShape(4);
+	s->setFillColor(sf::Color::Red);
+	for (int i = 0; i < 4; ++i) {
+		Vector2* v = rectangle->getPoints().at(i);
+		sf::Vector2f sfv = sf::Vector2f(v->x, v->y);
+		s->setPoint(i, sfv);
+	}
+	////Rectangle only
+	//sf::Vector2f size = sf::Vector2f();
+	//size.x = rectangle->getSize()->x;
+	//size.y = rectangle->getSize()->y;
+	//s->setSize(size);
 
-	//Rectangle only
-	sf::Vector2f size = sf::Vector2f();
-	size.x = rectangle->getSize()->getX();
-	size.y = rectangle->getSize()->getY();
-	s->setSize(size);
-
-	shapes.push_back(s);*/
+	this->shapes.push_back(s);
 }
 
 sf::Vector2f getPosition(IShape* shape) {
