@@ -7,6 +7,7 @@
 class SFMLApiFactory : public IApiFactory {
 public:
 	SFMLApiFactory();
+	~SFMLApiFactory();
 	IDrawingApi* createDrawingApi();
 	IUIApi* createRenderingApi();
 

@@ -6,8 +6,12 @@ SFMLApiFactory::SFMLApiFactory() {
 	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720), "ohayou");
 }
 
-IDrawingApi* SFMLApiFactory::createDrawingApi()
-{
+SFMLApiFactory::~SFMLApiFactory() {
+	delete window;
+}
+
+
+IDrawingApi* SFMLApiFactory::createDrawingApi() {
 	return new SFMLDrawingApi(this->window);
 }
 

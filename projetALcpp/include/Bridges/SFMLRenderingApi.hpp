@@ -7,6 +7,7 @@
 class SFMLUIApi : public IUIApi {
 public:
 	SFMLUIApi(sf::RenderWindow* w);
+	~SFMLUIApi();
 	void displayWindow();
 	void closeWindow();
 	bool isRunning();

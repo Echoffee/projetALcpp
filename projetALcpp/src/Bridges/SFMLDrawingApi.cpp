@@ -5,6 +5,14 @@ SFMLDrawingApi::SFMLDrawingApi(sf::RenderWindow* w) {
 	this->shapes = std::vector<sf::Drawable*>();
 }
 
+SFMLDrawingApi::~SFMLDrawingApi() {
+	//sf::RenderWindow* window;
+	//std::vector<sf::Drawable*> shapes;
+	delete window;
+	for (auto shape : shapes)
+		delete shape;
+}
+
 void SFMLDrawingApi::clear() {
 	this->shapes = std::vector<sf::Drawable*>();
 }

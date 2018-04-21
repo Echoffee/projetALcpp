@@ -8,6 +8,7 @@ class Handler {
 
 public:
 	Handler(Handler* s = nullptr);
+	~Handler();
 	void handle(Event* e, Canvas* env);
 	virtual bool task(Event* e, Canvas* env) = 0;
 

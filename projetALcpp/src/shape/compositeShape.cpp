@@ -30,21 +30,7 @@ IMemento * CompositeShape::createMemento(){
 
 void CompositeShape::addShape(IShape* shape){
 	shapes.push_back(shape);
-	std::vector<Vector2*> rotationCenters;
-	for (auto shape : shapes) {
-		rotationCenters.push_back(shape->getOrigin());
-	}
-
-	rotationCenter->x = 0;
-	rotationCenter->y = 0;
-
-	for (auto origin : rotationCenters) {
-		rotationCenter->x += origin->x;
-		rotationCenter->y += origin->y;
-	}
-
-	rotationCenter->x = rotationCenter->x / rotationCenters.size();
-	rotationCenter->y = rotationCenter->y / rotationCenters.size();
+	rotationCenter = this->getPosition();
 }
 
 void CompositeShape::draw(){

@@ -9,6 +9,7 @@
 class SFMLDrawingApi : public IDrawingApi {
 public:
 	SFMLDrawingApi(sf::RenderWindow* w);
+	~SFMLDrawingApi();
 
 	// IDrawingApi methods
 	void drawRectangle(Rectangle* rectangle);

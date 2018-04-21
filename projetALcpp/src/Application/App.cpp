@@ -3,15 +3,25 @@
 
 #include<Events/Handlers/HandlerClose.hpp>
 
-App::App(IApiFactory* factory)
-{
+App::App(IApiFactory* factory) {
 	this->drawingApi = factory->createDrawingApi();
 	this->uiApi = factory->createRenderingApi();
 	this->eventHandler = new HandlerClose();
 }
 
-void App::run()
-{
+App::~App() {
+	delete drawingApi;
+	delete uiApi;
+	delete eventHandler;
+
+	for (auto shape : shapes)
+		delete shape;
+
+	for (auto tool : tools)
+		delete tool;
+}
+
+void App::run() {
 	//Debug goes here
 	Rectangle* rect = new Rectangle(10, 10, 25, 30);
 
@@ -32,23 +42,19 @@ void App::run()
 	}
 }
 
-std::vector<IShape*> App::getShapes()
-{
+std::vector<IShape*> App::getShapes() {
 	return this->shapes;
 }
 
-std::vector<IShape*> App::getTools()
-{
+std::vector<IShape*> App::getTools() {
 	return this->tools;
 }
 
-Vector2* App::getCornerPosition()
-{
+Vector2* App::getCornerPosition() {
 	return new Vector2(20, 20);	//TODO
 }
 
-Vector2* App::getSize()
-{
+Vector2* App::getSize() {
 	return new Vector2(1280 - this->getCornerPosition()->x, 720 - this->getCornerPosition()->y); //TODO
 }
 

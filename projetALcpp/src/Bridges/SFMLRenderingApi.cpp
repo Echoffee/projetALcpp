@@ -1,8 +1,11 @@
 #include <Bridges/SFMLRenderingApi.hpp>
 
-SFMLUIApi::SFMLUIApi(sf::RenderWindow* w)
-{
+SFMLUIApi::SFMLUIApi(sf::RenderWindow* w) {
 	this->window = w;
+}
+
+SFMLUIApi::~SFMLUIApi() {
+	delete window;
 }
 
 void SFMLUIApi::displayWindow() {
@@ -13,13 +16,11 @@ void SFMLUIApi::closeWindow() {
 	window->close();
 }
 
-bool SFMLUIApi::isRunning()
-{
+bool SFMLUIApi::isRunning() {
 	return this->window->isOpen();
 }
 
-bool SFMLUIApi::getEvent(Event * event)
-{
+bool SFMLUIApi::getEvent(Event * event) {
 	sf::Event sfe;
 	if (this->window->pollEvent(sfe)) {
 

@@ -11,6 +11,8 @@
 class App : Canvas{
 public:
 	App(IApiFactory* factory);
+	~App();
+
 	void run();
 
 	//Canvas stuff
