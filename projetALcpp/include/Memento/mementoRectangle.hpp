@@ -1,7 +1,8 @@
 #ifndef MEMENTO_RECTANGLE_HPP
 #define MEMENTO_RECTANGLE_HPP
 
-#include <IMemento.hpp>
+#include <Memento/IMemento.hpp>
+#include <Maths/Vector2.hpp>
 #include <vector>
 
 class MementoRectangle : public IMemento {
@@ -10,8 +11,8 @@ class MementoRectangle : public IMemento {
 
 
 private:
-	MementoRectangle(std::vector<int> points, int color);
-	std::vector<int> points;
+	MementoRectangle(std::vector<Vector2*> points, int color);
+	std::vector<Vector2*> points;
 	int color;
 
 };

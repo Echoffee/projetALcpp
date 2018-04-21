@@ -1,7 +1,7 @@
 #ifndef IDRAWINGAPI_HPP
 #define IDRAWINGAPI_HPP
 
-#include <rectangle.hpp>
+#include <Shapes/Rectangle.hpp>
 
 class IDrawingApi {
 

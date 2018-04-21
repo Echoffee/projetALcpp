@@ -1,14 +1,15 @@
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
-#include <IMemento.hpp>
+#include <Memento/IMemento.hpp>
 #include <Maths/Vector2.hpp>
 #include <vector>
 
+class IVisitor;
 
 class IShape {
 protected:
-	std::vector<int>* rotationCenter;
+	Vector2* rotationCenter;
 
 public:
 	//Generic draw method (as an entity)
@@ -25,6 +26,9 @@ public:
 	//Common methods between groups and shapes
 	virtual void draw() = 0;
 	virtual IShape* clone() = 0;
+
+	//method for visitors
+	virtual void accept(IVisitor* visitor) = 0;
 };
 
 #endif //SHAPE
