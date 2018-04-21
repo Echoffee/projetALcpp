@@ -13,6 +13,11 @@ Rectangle::Rectangle(int x, int y, int width, int height){
 	color = 0xFFFFFF;
 }
 
+Rectangle::~Rectangle() {
+	for (auto point : points)
+		delete point;
+}
+
 void Rectangle::setMemento(IMemento * m){
 	MementoRectangle* savedState = (MementoRectangle*)m;
 	color = savedState->color;
@@ -20,7 +25,11 @@ void Rectangle::setMemento(IMemento * m){
 }
 
 IMemento * Rectangle::createMemento(){
-	MementoRectangle* state = new MementoRectangle(points, color);
+	std::vector<Vector2*> savedPoints(points.size());
+	for (int i = 0; i < points.size(); ++i) {
+		savedPoints.at(i) = new Vector2(points.at(i)->x, points.at(i)->y);
+	}
+	MementoRectangle* state = new MementoRectangle(savedPoints, color);
 	return state;
 }
 

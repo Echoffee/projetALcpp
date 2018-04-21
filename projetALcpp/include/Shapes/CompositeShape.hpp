@@ -11,6 +11,7 @@ private:
 public:
 	CompositeShape();
 	CompositeShape(std::vector<IShape*> shapes);
+	~CompositeShape();
 	// Shape methods
 	virtual void setMemento(IMemento* m) override;
 

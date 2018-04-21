@@ -9,6 +9,7 @@ private:
 public:
 	// IVisitor
 	VisitorTranslate(Vector2* direction);
+	~VisitorTranslate();
 
 	void visit(AbsShape* shape) override;
 

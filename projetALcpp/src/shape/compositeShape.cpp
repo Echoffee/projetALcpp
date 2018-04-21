@@ -1,4 +1,5 @@
 #include <Shapes/CompositeShape.hpp>
+#include <Visitor/VisitorGetPosition.hpp>
 
 CompositeShape::CompositeShape() {
 	rotationCenter = new Vector2(0, 0);
@@ -8,6 +9,11 @@ CompositeShape::CompositeShape(std::vector<IShape*> shapes) {
 	this->shapes = shapes;
 }
 
+CompositeShape::~CompositeShape() {
+	for (auto shape : shapes)
+		delete shape;
+}
+
 void CompositeShape::setMemento(IMemento * m){
 	MementoComposite* savedState = (MementoComposite*)m;
 	this->shapes = savedState->savedShapes;
@@ -15,9 +21,9 @@ void CompositeShape::setMemento(IMemento * m){
 
 IMemento * CompositeShape::createMemento(){
 	std::vector<IShape*> newShapes;
-	for (auto shape : shapes) {
+	for (auto shape : shapes)
 		newShapes.push_back(shape->clone());
-	}
+
 	MementoComposite* state = new MementoComposite(newShapes);
 	return state;
 }
@@ -48,16 +54,12 @@ void CompositeShape::draw(){
 //TODO: Maybe use a visitor or an iterator to do this operation on Composite (need to count each Shape)
 // so this solution is temp
 Vector2* CompositeShape::getPosition() {
-	Vector2* center = new Vector2(0, 0);
-	for (auto shape : shapes) {
-		Vector2* position = shape->getPosition();
-		center->x += position->x;
-		center->y += position->y;
-	}
-	center->x = center->x / shapes.size();
-	center->y = center->y / shapes.size();
+	VisitorGetPosition* visitor = new VisitorGetPosition();
+	this->accept(visitor);
 
-	return center;
+	Vector2* position = new Vector2(visitor->getPosition()->x, visitor->getPosition()->y);
+	delete visitor;
+	return position;
 }
 
 Vector2* CompositeShape::getOrigin() {

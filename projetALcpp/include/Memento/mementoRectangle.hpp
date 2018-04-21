@@ -9,9 +9,9 @@ class MementoRectangle : public IMemento {
 	//friend <classe qui a acces aux privates>
 	friend class Rectangle;
 
-
 private:
 	MementoRectangle(std::vector<Vector2*> points, int color);
+	~MementoRectangle();
 	std::vector<Vector2*> points;
 	int color;
 
