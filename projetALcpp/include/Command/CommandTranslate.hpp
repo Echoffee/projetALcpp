@@ -14,9 +14,9 @@ private :
 
 public :
 	CommandTranslate(float x, float y, IShape* shape);
+	~CommandTranslate();
 	//via ICommand
 	virtual void execute() override;
-
 	virtual void unexecute() override;
 
 };

@@ -6,3 +6,8 @@ Vector2::Vector2(float x, float y)
 	this->y = y;
 }
 
+Vector2::~Vector2() {
+
+}
+
+

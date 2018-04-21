@@ -6,6 +6,10 @@ VisitorTranslate::VisitorTranslate(Vector2* direction) {
 	this->direction = direction;
 }
 
+VisitorTranslate::~VisitorTranslate() {
+	delete direction;
+}
+
 void VisitorTranslate::visit(AbsShape* shape) {
 	std::vector<Vector2*> points(shape->getPoints());
 	for (auto point : points) {
@@ -15,7 +19,7 @@ void VisitorTranslate::visit(AbsShape* shape) {
 }
 
 void VisitorTranslate::visit(CompositeShape* shapes) {
-	std::vector<IShape*> group(shapes->getShapes);
+	std::vector<IShape*> group(shapes->getShapes());
 	for (auto shape : group) {
 		shape->accept(this);
 	}

@@ -8,6 +8,7 @@ class Rectangle : public AbsShape {
 public:
 	Rectangle(std::vector<Vector2*> points, int color);
 	Rectangle(int x, int y, int width, int height);
+	~Rectangle();
 
 	// AbsShape methods
 	virtual void setMemento(IMemento * m) override;

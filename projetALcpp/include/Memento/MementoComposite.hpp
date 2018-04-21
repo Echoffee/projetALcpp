@@ -10,6 +10,7 @@ class MementoComposite : public IMemento {
 
 private:
 	MementoComposite(std::vector<IShape*> shapes);
+	~MementoComposite();
 	std::vector<IShape*> savedShapes;
 
 

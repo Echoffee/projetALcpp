@@ -6,6 +6,10 @@ CommandTranslate::CommandTranslate(float x, float y, IShape* shape) {
 	direction = new Vector2(x, y);
 }
 
+CommandTranslate::~CommandTranslate() {
+
+}
+
 void CommandTranslate::execute() {
 	savedState = shape->createMemento();
 	VisitorTranslate* visitor = new VisitorTranslate(direction);

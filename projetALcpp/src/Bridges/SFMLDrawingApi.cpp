@@ -15,7 +15,7 @@ void SFMLDrawingApi::render() {
 	}
 }
 
-void SFMLApi::drawRectangle(Rectangle* rectangle) {
+void SFMLDrawingApi::drawRectangle(Rectangle* rectangle) {
 	/*sf::RectangleShape* s = new sf::RectangleShape();
 	s->setPosition(getPosition(rectangle));
 	s->setOrigin(getOrigin(rectangle));
