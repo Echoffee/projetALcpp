@@ -146,7 +146,7 @@ std::vector<Shape*> getShapesAtPointMacro(std::vector<Shape*> shapes, Vector2* p
 		if (v->isContained())
 			result.push_back(s);
 
-		//delete v;
+		delete v;
 	}
 
 	return result;

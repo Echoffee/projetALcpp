@@ -5,6 +5,10 @@ VisitorPoint::VisitorPoint(Vector2* point) {
 	result = false;
 }
 
+VisitorPoint::~VisitorPoint() {
+
+}
+
 void VisitorPoint::visit(AbstractShape* shape) {
 	Vector2* c = shape->getPosition();
 	std::vector<Vector2*> points = shape->getPoints();
