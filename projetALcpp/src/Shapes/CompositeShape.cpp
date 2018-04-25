@@ -68,4 +68,11 @@ std::vector<Shape*> CompositeShape::getShapes() {
 
 void CompositeShape::accept(Visitor* visitor) {
 	visitor->visit(this);
+	std::vector<Shape*> newShapes;
+
+	for (auto shape : shapes)
+		newShapes.push_back(shape->clone());
+
+	for (auto shape : newShapes)
+		shape->accept(visitor);
 }
