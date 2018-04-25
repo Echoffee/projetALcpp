@@ -13,7 +13,8 @@ private:
 	bool isInOp = false;
 	Vector2* startPos;
 	Vector2* endPos;
-	Shape* shape;
+	Shape* trueShape;
+	Shape* ghostShape;
 	std::vector<Shape*> shapes;
 
 	Vector2* deltaOld;

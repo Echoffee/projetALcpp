@@ -19,8 +19,10 @@ public:
 	virtual Vector2* getOrigin() override;
 	virtual void accept(Visitor* visitor) override;
 	virtual std::vector<Vector2*> getPoints();
-	virtual void setColorFill(Color* color);
-	virtual void setColorLine(Color* color);
+	void setColorFill(Color* color);
+	void setColorLine(Color* color);
+	Color* getColorFill();
+	Color* getColorLine();
 };
 
 #endif

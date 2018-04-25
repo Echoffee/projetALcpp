@@ -30,6 +30,11 @@ public:
 	virtual void accept(Visitor* visitor) override;
 
 	std::vector<Shape*> getShapes();
+
+	void setColorFill(Color* color);
+	void setColorLine(Color* color);
+	Color* getColorFill();
+	Color* getColorLine();
 };
 
 #endif
