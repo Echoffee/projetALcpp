@@ -4,6 +4,8 @@
 #include <Bridges/DrawingApi.hpp>
 
 #include <SFML/Graphics.hpp>
+#include <Maths/Vector2.hpp>
+#include <Maths/Color.hpp>
 #include <vector>
 
 class SFMLDrawingApi : public DrawingApi {
@@ -12,7 +14,11 @@ public:
 	~SFMLDrawingApi();
 
 	// IDrawingApi methods
+	void setColorFill(Color* color);
+	void setColorLine(Color* color);
+	void setLineWidth(float width);
 	void drawShape(std::vector<Vector2*> points);
+	void drawLine(Vector2* start, Vector2* end);
 
 	void clear();
 	void render();
@@ -20,9 +26,11 @@ public:
 private:
 	// Window
 	sf::RenderWindow* window;
-
 	std::vector<sf::Drawable*> shapes;
 
+	Color* colorFill;
+	Color* colorLine;
+	float lineWidth;
 };
 
 #endif // !SFMLDRAWINGAPI_HPP

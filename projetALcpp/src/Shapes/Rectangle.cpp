@@ -36,7 +36,13 @@ Memento * Rectangle::createMemento(){
 }
 
 void Rectangle::draw(){
+	api->setColorFill(new Color(255, 0, 0));
+	api->setColorLine(new Color(0, 255, 0));
+	api->setLineWidth(2);
 	api->drawShape(points);
+	for (int i = 0; i < 4; ++i) {
+		api->drawLine(points.at(i), points.at((i + 1) % 4));
+	}
 }
 
 Vector2* Rectangle::getPosition() {
