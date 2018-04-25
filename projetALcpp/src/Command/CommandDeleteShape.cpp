@@ -12,8 +12,9 @@ CommandDeleteShape::~CommandDeleteShape() {
 }
 
 void CommandDeleteShape::execute() {
-	std::vector<Shape*> vec(canvas->getShapes());
-	vec.erase(std::remove(vec.begin(), vec.end(), shape), vec.end());
+	//std::vector<Shape*> vec(canvas->getShapes());
+	//vec.erase(std::remove(vec.begin(), vec.end(), shape), vec.end());
+	canvas->deleteShape(shape);
 }
 
 void CommandDeleteShape::unexecute() {

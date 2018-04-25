@@ -71,7 +71,10 @@ void App::run() {
 	gr3->addShape(gr2);
 
 	shapes.push_back(gr3);
-
+	/*CompositeShape* gr1 = new CompositeShape();
+	gr1->addShape(rect);
+	gr1->addShape(rect2);
+	shapes.push_back(gr1);*/
 	//TODO
 	while (uiApi->isRunning()) {
 		Event e;
@@ -110,6 +113,15 @@ std::vector<Shape*> App::getShapes() {
 
 std::vector<Shape*> App::getTools() {
 	return this->tools;
+}
+
+void App::addShape(Shape * s)
+{
+	shapes.push_back(s);
+}
+
+void App::deleteShape(Shape* s) {
+	shapes.erase(std::remove(shapes.begin(), shapes.end(), s), shapes.end());
 }
 
 bool App::isOnCanvas(Vector2 * point)

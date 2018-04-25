@@ -85,7 +85,7 @@ Color * CompositeShape::getColorFill()
 
 Color * CompositeShape::getColorLine()
 {
-	return new Color(0, 255, 255, 128);
+	return new Color(255, 0, 0, 128);
 }
 
 void CompositeShape::accept(Visitor* visitor) {

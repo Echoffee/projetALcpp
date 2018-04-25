@@ -8,7 +8,7 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 {
 	if (!isInOp) {
 		if (e->type == EventType::MouseButtonDown && e->keyid == 0 && env->isOnCanvas(e->mousePosition)) {
-			shapes = env->getCanvas()->getShapesAtPoint(e->mousePosition);
+			shapes = env->getShapesAtPoint(e->mousePosition);
 			if (shapes.size() > 0) {
 				trueShape = shapes.front();
 			}
@@ -17,10 +17,10 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			}
 
 			ghostShape = trueShape->clone();
-			//Color* c = ghostShape->getColorFill();
-			//c->a = 128;
-			//ghostShape->setColorFill(c);
-			Command* command = new CommandAddShape(ghostShape, env->getCanvas());
+			Color* c = ghostShape->getColorFill();
+			c->a = 128;
+			ghostShape->setColorFill(c);
+			Command* command = new CommandAddShape(ghostShape, env);
 			env->addCommand(command);
 			startPos = e->mousePosition;
 			deltaOld = e->mousePosition;
@@ -44,7 +44,7 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			else
 				deltaNew = startPos;
 			
-			env->addCommand(new CommandDeleteShape(ghostShape, env->getCanvas()));
+			env->addCommand(new CommandDeleteShape(ghostShape, env));
 			env->addCommand(new CommandTranslate(deltaNew->x - startPos->x, deltaNew->y - startPos->y, trueShape));
 			isInOp = false;
 			return true;

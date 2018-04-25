@@ -11,7 +11,7 @@ CommandAddShape::~CommandAddShape() {
 }
 
 void CommandAddShape::execute() {
-	canvas->getShapes().push_back(shape);
+	canvas->addShape(shape);
 }
 
 void CommandAddShape::unexecute() {
