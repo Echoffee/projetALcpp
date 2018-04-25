@@ -24,6 +24,16 @@ void AbstractShape::setColorLine(Color * color)
 	this->colorLine = color;
 }
 
+Color * AbstractShape::getColorFill()
+{
+	return colorFill;
+}
+
+Color * AbstractShape::getColorLine()
+{
+	return colorLine;
+}
+
 void AbstractShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 }

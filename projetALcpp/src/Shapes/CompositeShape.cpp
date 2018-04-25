@@ -66,6 +66,28 @@ std::vector<Shape*> CompositeShape::getShapes() {
 	return shapes;
 }
 
+void CompositeShape::setColorFill(Color * color)
+{
+	for (auto shape : shapes)
+		shape->setColorFill(color);
+}
+
+void CompositeShape::setColorLine(Color * color)
+{
+	for (auto shape : shapes)
+		shape->setColorLine(color);
+}
+
+Color * CompositeShape::getColorFill()
+{
+	return new Color(255, 255, 255, 0);
+}
+
+Color * CompositeShape::getColorLine()
+{
+	return new Color(0, 255, 255, 128);
+}
+
 void CompositeShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 	std::vector<Shape*> newShapes;

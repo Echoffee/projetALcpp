@@ -3,6 +3,7 @@
 
 #include <Memento/Memento.hpp>
 #include <Maths/Vector2.hpp>
+#include <Maths/Color.hpp>
 #include <vector>
 
 class Visitor;
@@ -15,7 +16,10 @@ public:
 	//Generic draw method (as an entity)
 	virtual Vector2* getPosition() = 0;
 	virtual Vector2* getOrigin() = 0;
-
+	virtual Color* getColorFill() = 0;
+	virtual void setColorFill(Color* c) = 0;
+	virtual Color* getColorLine() = 0;
+	virtual void setColorLine(Color* c) = 0;
 	//Methods for memento pattern 
 	virtual void setMemento(Memento* m) = 0;
 	virtual Memento* createMemento() = 0;
