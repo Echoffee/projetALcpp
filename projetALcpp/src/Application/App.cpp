@@ -71,6 +71,10 @@ void App::run() {
 	gr3->addShape(gr2);
 
 	shapes.push_back(gr3);
+
+	for (int i = 0; i < 50; i++)
+		shapes.push_back(new Rectangle(drawingApi, 70 + 5 * i, 70 + 5 * i, 20, 25));
+
 	/*CompositeShape* gr1 = new CompositeShape();
 	gr1->addShape(rect);
 	gr1->addShape(rect2);

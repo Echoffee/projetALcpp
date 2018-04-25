@@ -67,7 +67,9 @@ Shape * Rectangle::clone(){
 	for (auto p : points) {
 		newPoints.push_back(new Vector2(p->x, p->y));
 	}
-	Rectangle* r = new Rectangle(api, newPoints, colorFill, colorLine);
+	Color* newColorFill = new Color(colorFill->r, colorFill->g, colorFill->b, colorFill->a);
+	Color* newColorLine = new Color(colorLine->r, colorLine->g, colorLine->b, colorLine->a);
+	Rectangle* r = new Rectangle(api, newPoints, newColorFill, newColorLine);
 	//memcpy(r, this, sizeof(this));
 	return r;
 }
