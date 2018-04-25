@@ -63,7 +63,10 @@ Vector2* Rectangle::getPosition() {
 
 
 Shape * Rectangle::clone(){
-	std::vector<Vector2*> newPoints(points);
+	std::vector<Vector2*> newPoints;
+	for (auto p : points) {
+		newPoints.push_back(new Vector2(p->x, p->y));
+	}
 	Rectangle* r = new Rectangle(api, newPoints, colorFill, colorLine);
 	//memcpy(r, this, sizeof(this));
 	return r;
