@@ -14,6 +14,16 @@ std::vector<Vector2*> AbstractShape::getPoints() {
 	return points;
 }
 
+void AbstractShape::setColorFill(Color * color)
+{
+	this->colorFill = color;
+}
+
+void AbstractShape::setColorLine(Color * color)
+{
+	this->colorLine = color;
+}
+
 void AbstractShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 }

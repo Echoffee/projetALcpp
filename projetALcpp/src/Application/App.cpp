@@ -31,8 +31,23 @@ App::~App() {
 }
 
 void App::run() {
+	//Canvas drawing
+	Rectangle* toolbarTop = new Rectangle(drawingApi, 2, 2, 1278, 38);
+	toolbarTop->setColorFill(new Color(255, 255, 255));
+	toolbarTop->setColorLine(new Color(30, 30, 255));
+
+	Rectangle* toolbarLeft = new Rectangle(drawingApi, 2, 40, 38, 678);
+	toolbarLeft->setColorFill(new Color(255, 255, 255));
+	toolbarLeft->setColorLine(new Color(30, 30, 255));
+
+	Rectangle* canvas = new Rectangle(drawingApi, 40, 40, 1238, 678);
+	canvas->setColorFill(new Color(255, 255, 255));
+	canvas->setColorLine(new Color(30, 30, 255));
+	uiElements.push_back(toolbarTop);
+	uiElements.push_back(toolbarLeft);
+
 	//Debug goes here
-	Rectangle* rect = new Rectangle(drawingApi, 10, 10, 25, 30);
+	Rectangle* rect = new Rectangle(drawingApi, 40, 40, 25, 30);
 	shapes.push_back(rect);
 
 	//TODO
@@ -50,6 +65,11 @@ void App::run() {
 		drawingApi->clear();
 		//Drawing stuff
 		//drawingApi->drawShape(rect->getPoints());
+		canvas->draw();
+		for (auto s : uiElements)
+			s->draw();
+		for (auto s : tools)
+			s->draw();
 		for (auto s : shapes)
 			s->draw();
 		//
