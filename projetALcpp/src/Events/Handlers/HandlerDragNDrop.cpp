@@ -25,7 +25,7 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			endPos = e->mousePosition;
 			isInOp = false;
 
-			env->addCommand(new CommandTranslate(startPos->x - endPos->x, startPos->y - startPos->y, shape));
+			env->addCommand(new CommandTranslate(endPos->x - startPos->x, endPos->y - startPos->y, shape));
 			return true;
 		}
 	}

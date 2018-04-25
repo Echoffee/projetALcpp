@@ -15,6 +15,7 @@ SFMLDrawingApi::~SFMLDrawingApi() {
 
 void SFMLDrawingApi::clear() {
 	this->shapes = std::vector<sf::Drawable*>();
+	window->clear();
 }
 
 void SFMLDrawingApi::render() {
