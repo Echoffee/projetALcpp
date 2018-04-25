@@ -43,7 +43,7 @@ void App::run() {
 	toolbarLeft->setColorFill(new Color(255, 255, 255));
 	toolbarLeft->setColorLine(new Color(30, 30, 255));
 
-	Rectangle* canvas = new Rectangle(drawingApi, 40, 40, 1238, 678);
+	canvas = new Rectangle(drawingApi, 40, 40, 1238, 678);
 	canvas->setColorFill(new Color(255, 255, 255));
 	canvas->setColorLine(new Color(30, 30, 255));
 	uiElements.push_back(toolbarTop);
@@ -112,6 +112,16 @@ std::vector<Shape*> App::getTools() {
 	return this->tools;
 }
 
+bool App::isOnCanvas(Vector2 * point)
+{
+	Vector2* tl, *br;
+	tl = canvas->getPoints().at(0);
+	br = canvas->getPoints().at(2);
+
+	return tl->x < point->x && br->x > point->x &&
+		tl->y < point->y && br->y > point->y;
+}
+
 Vector2* App::getCornerPosition() {
 	return new Vector2(20, 20);	//TODO
 }
@@ -128,7 +138,7 @@ Canvas* App::getCanvas() {
 	return this;
 }
 
-std::vector<Shape*> App::getShapesAtPoint(Vector2* point) {
+std::vector<Shape*> getShapesAtPointMacro(std::vector<Shape*> shapes, Vector2* point) {
 	std::vector<Shape*> result = std::vector<Shape*>();
 	for (auto s : shapes) {
 		VisitorPoint* v = new VisitorPoint(point);
@@ -140,4 +150,14 @@ std::vector<Shape*> App::getShapesAtPoint(Vector2* point) {
 	}
 
 	return result;
+}
+
+std::vector<Shape*> App::getShapesAtPoint(Vector2 * point)
+{
+	return getShapesAtPointMacro(shapes, point);
+}
+
+bool App::isOnToolbar(Vector2 * point)
+{
+	return getShapesAtPointMacro(uiElements, point).size() > 0;
 }

@@ -11,7 +11,7 @@
 //Canvas part
 #include <Application/Canvas.hpp>
 #include <Shapes/Shape.hpp>
-
+class Rectangle;
 class App : Canvas{
 public:
 	App(ApiFactory* factory);
@@ -27,6 +27,8 @@ public:
 	std::vector<Shape*> getShapes();
 	std::vector<Shape*> getShapesAtPoint(Vector2* point);
 	std::vector<Shape*> getTools(); //Ces Shape seront des Tools : Shape en fait
+	bool isOnCanvas(Vector2* point);
+	bool isOnToolbar(Vector2* point);
 	Vector2* getCornerPosition();
 	Vector2* getSize();
 	void closeWindow();
@@ -39,6 +41,7 @@ private:
 	std::queue<Command*> commands;
 
 	//Rendering objects
+	Rectangle* canvas;
 	std::vector<Shape*> uiElements;
 	std::vector<Shape*> shapes;
 	std::vector<Shape*> tools;
