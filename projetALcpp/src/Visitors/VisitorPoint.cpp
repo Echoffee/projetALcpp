@@ -2,10 +2,10 @@
 #include <Shapes/AbstractShape.hpp>
 VisitorPoint::VisitorPoint(Vector2* point) {
 	this->point = point;
+	result = false;
 }
 
 void VisitorPoint::visit(AbstractShape* shape) {
-	result = false;
 	Vector2* c = shape->getPosition();
 	std::vector<Vector2*> points = shape->getPoints();
 	for (int i = 0; i < points.size() && !result; ++i) {
@@ -26,3 +26,4 @@ bool VisitorPoint::isContained() {
 void VisitorPoint::visit(CompositeShape* shapes) {
 	//TODO
 }
+

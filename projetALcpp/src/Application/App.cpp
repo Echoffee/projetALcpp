@@ -7,6 +7,9 @@
 #include <Visitor/VisitorPoint.hpp>
 
 #include <Shapes/Rectangle.hpp>
+#include <Shapes/CompositeShape.hpp>
+
+
 App::App(ApiFactory* factory) {
 	this->drawingApi = factory->createDrawingApi();
 	this->uiApi = factory->createRenderingApi();
@@ -47,8 +50,27 @@ void App::run() {
 	uiElements.push_back(toolbarLeft);
 
 	//Debug goes here
-	Rectangle* rect = new Rectangle(drawingApi, 40, 40, 25, 30);
-	shapes.push_back(rect);
+	Rectangle* rect = new Rectangle(drawingApi, 80, 40, 25, 30);
+	Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);
+	Rectangle* rect3 = new Rectangle(drawingApi, 40, 80, 25, 30);
+
+	Rectangle* rect4 = new Rectangle(drawingApi, 30, 60, 25, 30);
+	Rectangle* rect5 = new Rectangle(drawingApi, 100, 150, 25, 30);
+
+	CompositeShape* gr1 = new CompositeShape();
+	gr1->addShape(rect);
+	gr1->addShape(rect2);
+	gr1->addShape(rect3);
+
+	CompositeShape* gr2 = new CompositeShape();
+	gr2->addShape(rect4);
+	gr2->addShape(rect5);
+
+	CompositeShape* gr3 = new CompositeShape();
+	gr3->addShape(gr1);
+	gr3->addShape(gr2);
+
+	shapes.push_back(gr3);
 
 	//TODO
 	while (uiApi->isRunning()) {
@@ -113,6 +135,8 @@ std::vector<Shape*> App::getShapesAtPoint(Vector2* point) {
 		s->accept(v);
 		if (v->isContained())
 			result.push_back(s);
+
+		//delete v;
 	}
 
 	return result;

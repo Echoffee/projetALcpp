@@ -34,4 +34,5 @@ void CommandDegroup::unexecute() {
 	*/
 	CommandGroup* groupCommand = new CommandGroup(degroupedShapes, canvas);
 	groupCommand->execute();
+	delete groupCommand;
 }

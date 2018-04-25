@@ -31,4 +31,5 @@ void CommandGroup::execute() {
 void CommandGroup::unexecute() {
 	CommandDegroup* degroupCommand = new CommandDegroup(composite, canvas);
 	degroupCommand->execute();
+	delete degroupCommand;
 }
