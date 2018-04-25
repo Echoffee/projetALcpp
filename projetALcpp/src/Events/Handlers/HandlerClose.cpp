@@ -1,9 +1,10 @@
 #include <Events/Handlers/HandlerClose.hpp>
-
-bool HandlerClose::task(Event * e, Canvas* env)
+#include <Command/CommandClose.hpp>
+#include <Application/App.hpp>
+bool HandlerClose::task(Event * e, App* env)
 {
 	if (e->type == EventType::Close) {
-		env->closeWindow();
+		env->addCommand(new CommandClose(env));
 	}
 	return false;
 }

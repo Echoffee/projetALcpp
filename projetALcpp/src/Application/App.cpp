@@ -33,6 +33,10 @@ void App::run() {
 			eventHandler->handle(&e, this);
 		}
 
+		if (commands.size() > 0) {
+			commands.front()->execute();
+			commands.pop();
+		}
 		drawingApi->clear();
 		//Drawing stuff
 		drawingApi->drawRectangle(rect);
@@ -40,6 +44,10 @@ void App::run() {
 		drawingApi->render();
 		uiApi->displayWindow();
 	}
+}
+
+void App::addCommand(Command* command) {
+	commands.push(command);
 }
 
 std::vector<Shape*> App::getShapes() {

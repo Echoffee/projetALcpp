@@ -9,7 +9,7 @@ Handler::~Handler() {
 		delete successor;
 }
 
-void Handler::handle(Event * e, Canvas* env)
+void Handler::handle(Event * e, App* env)
 {
 	if (!task(e, env) && successor != nullptr)
 		this->successor->handle(e, env);

@@ -6,6 +6,9 @@ enum EventType
 {
 	None,
 	Close,
+	MouseButtonDown,
+	MouseButtonUp,
+	MouseMove,
 };
 
 #endif // !EVENTTYPE_HPP

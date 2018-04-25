@@ -5,7 +5,7 @@
 
 class HandlerClose : public Handler {
 public:
-	bool task(Event* e, Canvas* env);
+	bool task(Event* e, App* env);
 };
 
 #endif // !HANDLERCLOSE_HPP

@@ -4,6 +4,10 @@
 #include <Factories/ApiFactory.hpp>
 #include <Events/Handler.hpp>
 
+//UI part
+#include <Command/Command.hpp>
+#include <queue>
+
 //Canvas part
 #include <Application/Canvas.hpp>
 #include <Shapes/Shape.hpp>
@@ -14,6 +18,9 @@ public:
 	~App();
 
 	void run();
+
+	//UI stuff
+	void addCommand(Command* command);
 
 	//Canvas stuff
 	std::vector<Shape*> getShapes();
@@ -27,6 +34,7 @@ private:
 	DrawingApi* drawingApi;
 	UIApi* uiApi;
 	Handler* eventHandler;	//base of CoR
+	std::queue<Command*> commands;
 
 	//Rendering objects
 	std::vector<Shape*> shapes;
