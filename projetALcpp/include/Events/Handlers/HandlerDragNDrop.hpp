@@ -15,6 +15,9 @@ private:
 	Vector2* endPos;
 	Shape* shape;
 	std::vector<Shape*> shapes;
+
+	Vector2* deltaOld;
+	Vector2* deltaNew;
 };
 
 #endif // !HANDLERDRAGNDROP_HPP

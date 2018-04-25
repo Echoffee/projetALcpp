@@ -14,18 +14,24 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 				return false;
 			}
 
-			startPos = e->mousePosition;
+			deltaOld = e->mousePosition;
 			isInOp = true;
 
 			return true;
 		}
 	}
 	else {
-		if (e->type == EventType::MouseButtonUp && e->keyid == 0) {
-			endPos = e->mousePosition;
-			isInOp = false;
+		if (e->type == EventType::MouseMove) {
+			deltaNew = e->mousePosition;
+			env->addCommand(new CommandTranslate(deltaNew->x - deltaOld->x, deltaNew->y - deltaOld->y, shape));
+			deltaOld = deltaNew;
+			return true;
+		}
 
-			env->addCommand(new CommandTranslate(endPos->x - startPos->x, endPos->y - startPos->y, shape));
+		if (e->type == EventType::MouseButtonUp && e->keyid == 0) {
+			deltaNew = e->mousePosition;
+			env->addCommand(new CommandTranslate(deltaNew->x - deltaOld->x, deltaNew->y - deltaOld->y, shape));
+			isInOp = false;
 			return true;
 		}
 	}
