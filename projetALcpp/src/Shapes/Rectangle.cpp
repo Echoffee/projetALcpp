@@ -1,16 +1,18 @@
 #include <Shapes/Rectangle.hpp>
 
-Rectangle::Rectangle(std::vector<Vector2*> points, int color) {
+Rectangle::Rectangle(DrawingApi* api, std::vector<Vector2*> points, int color) {
 	this->points = points;
 	this->color = color;
+	this->api = api;
 }
 
-Rectangle::Rectangle(int x, int y, int width, int height){
+Rectangle::Rectangle(DrawingApi* api, int x, int y, int width, int height){
 	points.push_back(new Vector2(x, y));
 	points.push_back(new Vector2(x + width, y));
 	points.push_back(new Vector2(x + width, y + height));
 	points.push_back(new Vector2(x, y + height));
 	color = 0xFFFFFF;
+	this->api = api;
 }
 
 Rectangle::~Rectangle() {
@@ -34,7 +36,7 @@ Memento * Rectangle::createMemento(){
 }
 
 void Rectangle::draw(){
-
+	api->drawShape(points);
 }
 
 Vector2* Rectangle::getPosition() {
@@ -53,7 +55,7 @@ Vector2* Rectangle::getPosition() {
 
 Shape * Rectangle::clone(){
 	std::vector<Vector2*> newPoints(points);
-	Rectangle* r = new Rectangle(newPoints, color);
+	Rectangle* r = new Rectangle(api, newPoints, color);
 	//memcpy(r, this, sizeof(this));
 	return r;
 }

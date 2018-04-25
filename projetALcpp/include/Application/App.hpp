@@ -21,9 +21,11 @@ public:
 
 	//UI stuff
 	void addCommand(Command* command);
+	Canvas* getCanvas();
 
 	//Canvas stuff
 	std::vector<Shape*> getShapes();
+	std::vector<Shape*> getShapesAtPoint(Vector2* point);
 	std::vector<Shape*> getTools(); //Ces Shape seront des Tools : Shape en fait
 	Vector2* getCornerPosition();
 	Vector2* getSize();

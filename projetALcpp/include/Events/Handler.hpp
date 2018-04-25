@@ -7,9 +7,8 @@ class App;
 class Handler {
 
 public:
-	Handler(Handler* s = nullptr);
-	~Handler();
 	void handle(Event* e, App* env);
+	void setSuccessor(Handler* next);
 	virtual bool task(Event* e, App* env) = 0;
 
 

@@ -2,11 +2,20 @@
 #include <Events/Event.hpp>
 
 #include <Events/Handlers/HandlerClose.hpp>
+#include <Events/Handlers/HandlerDragNDrop.hpp>
 
+#include <Visitor/VisitorPoint.hpp>
+
+#include <Shapes/Rectangle.hpp>
 App::App(ApiFactory* factory) {
 	this->drawingApi = factory->createDrawingApi();
 	this->uiApi = factory->createRenderingApi();
-	this->eventHandler = new HandlerClose();
+	Handler* hClose = new HandlerClose();
+	Handler* hDragNDrop = new HandlerDragNDrop();
+
+	hClose->setSuccessor(hDragNDrop);
+
+	this->eventHandler = hClose;
 }
 
 App::~App() {
@@ -23,7 +32,8 @@ App::~App() {
 
 void App::run() {
 	//Debug goes here
-	Rectangle* rect = new Rectangle(10, 10, 25, 30);
+	Rectangle* rect = new Rectangle(drawingApi, 10, 10, 25, 30);
+	shapes.push_back(rect);
 
 	//TODO
 	while (uiApi->isRunning()) {
@@ -39,7 +49,9 @@ void App::run() {
 		}
 		drawingApi->clear();
 		//Drawing stuff
-		drawingApi->drawShape(rect->getPoints());
+		//drawingApi->drawShape(rect->getPoints());
+		for (auto s : shapes)
+			s->draw();
 		//
 		drawingApi->render();
 		uiApi->displayWindow();
@@ -68,4 +80,20 @@ Vector2* App::getSize() {
 
 void App::closeWindow() {
 	this->uiApi->closeWindow();
+}
+
+Canvas* App::getCanvas() {
+	return this;
+}
+
+std::vector<Shape*> App::getShapesAtPoint(Vector2* point) {
+	std::vector<Shape*> result = std::vector<Shape*>();
+	for (auto s : shapes) {
+		VisitorPoint* v = new VisitorPoint(point);
+		s->accept(v);
+		if (v->isContained())
+			result.push_back(s);
+	}
+
+	return result;
 }

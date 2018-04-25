@@ -1,8 +1,8 @@
 #ifndef IDRAWINGAPI_HPP
 #define IDRAWINGAPI_HPP
 
-#include <Shapes/Rectangle.hpp>
-
+#include <vector>
+#include <Maths/Vector2.hpp>
 class DrawingApi {
 
 public:

@@ -5,6 +5,7 @@ bool HandlerClose::task(Event * e, App* env)
 {
 	if (e->type == EventType::Close) {
 		env->addCommand(new CommandClose(env));
+		return true;
 	}
 	return false;
 }

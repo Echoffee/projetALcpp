@@ -34,7 +34,8 @@ void CompositeShape::addShape(Shape* shape){
 }
 
 void CompositeShape::draw(){
-
+	for (auto s : shapes)
+		s->draw();
 }
 
 //TODO: Maybe use a visitor or an iterator to do this operation on Composite (need to count each Shape)

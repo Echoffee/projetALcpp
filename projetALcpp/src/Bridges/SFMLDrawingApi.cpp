@@ -44,17 +44,3 @@ void SFMLDrawingApi::drawShape(std::vector<Vector2*> points) {
 
 	this->shapes.push_back(s);
 }
-
-sf::Vector2f getPosition(Shape* shape) {
-	sf::Vector2f result = sf::Vector2f();
-	result.x = shape->getPosition()->x;
-	result.y = shape->getPosition()->y;
-	return result;
-}
-
-sf::Vector2f getOrigin(Shape* shape) {
-	sf::Vector2f result = sf::Vector2f();
-	result.x = shape->getOrigin()->x;
-	result.y = shape->getOrigin()->y;
-	return result;
-}

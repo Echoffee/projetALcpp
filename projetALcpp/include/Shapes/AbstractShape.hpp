@@ -4,11 +4,12 @@
 #include <Visitor/Visitor.hpp>
 #include <Maths/Vector2.hpp>
 #include <vector>
-
+#include <Bridges/DrawingApi.hpp>
 class AbstractShape : public Shape{
 protected:
 	std::vector<Vector2*> points;
 	int color;
+	DrawingApi* api;
 
 public:
 	// Shape methods

@@ -3,11 +3,10 @@
 
 #include <Shapes/AbstractShape.hpp>
 #include <Memento/mementoRectangle.hpp>
-
 class Rectangle : public AbstractShape {
 public:
-	Rectangle(std::vector<Vector2*> points, int color);
-	Rectangle(int x, int y, int width, int height);
+	Rectangle(DrawingApi* api, std::vector<Vector2*> points, int color);
+	Rectangle(DrawingApi* api, int x, int y, int width, int height);
 	~Rectangle();
 
 	// AbsShape methods
