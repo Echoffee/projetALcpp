@@ -75,4 +75,5 @@ void CompositeShape::accept(Visitor* visitor) {
 
 	for (auto shape : newShapes)
 		shape->accept(visitor);
+	this->shapes = newShapes;
 }
