@@ -9,7 +9,7 @@ VisitorRotate::VisitorRotate(Vector2* point, double angle) {
 }
 
 VisitorRotate::~VisitorRotate() {
-	
+
 }
 
 /*

@@ -24,5 +24,5 @@ bool VisitorPoint::isContained() {
 }
 
 void VisitorPoint::visit(CompositeShape* shapes) {
-
+	//TODO
 }
