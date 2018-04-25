@@ -39,6 +39,7 @@ private:
 	std::queue<Command*> commands;
 
 	//Rendering objects
+	std::vector<Shape*> uiElements;
 	std::vector<Shape*> shapes;
 	std::vector<Shape*> tools;
 

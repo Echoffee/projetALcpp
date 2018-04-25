@@ -5,7 +5,7 @@
 #include <Memento/mementoRectangle.hpp>
 class Rectangle : public AbstractShape {
 public:
-	Rectangle(DrawingApi* api, std::vector<Vector2*> points, int color);
+	Rectangle(DrawingApi* api, std::vector<Vector2*> points, Color* colorFill, Color* colorLine);
 	Rectangle(DrawingApi* api, int x, int y, int width, int height);
 	~Rectangle();
 

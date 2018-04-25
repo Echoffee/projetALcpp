@@ -1,8 +1,9 @@
 #include <Shapes/Rectangle.hpp>
 
-Rectangle::Rectangle(DrawingApi* api, std::vector<Vector2*> points, int color) {
+Rectangle::Rectangle(DrawingApi* api, std::vector<Vector2*> points, Color* colorFill, Color* colorLine) {
 	this->points = points;
-	this->color = color;
+	this->colorFill = colorFill;
+	this->colorLine = colorLine;
 	this->api = api;
 }
 
@@ -11,7 +12,8 @@ Rectangle::Rectangle(DrawingApi* api, int x, int y, int width, int height){
 	points.push_back(new Vector2(x + width, y));
 	points.push_back(new Vector2(x + width, y + height));
 	points.push_back(new Vector2(x, y + height));
-	color = 0xFFFFFF;
+	colorFill = new Color(255, 0, 255);
+	colorLine = new Color(0, 255, 255);
 	this->api = api;
 }
 
@@ -22,7 +24,8 @@ Rectangle::~Rectangle() {
 
 void Rectangle::setMemento(Memento * m){
 	MementoRectangle* savedState = (MementoRectangle*)m;
-	color = savedState->color;
+	colorFill = savedState->colorFill;
+	colorLine = savedState->colorLine;
 	points = savedState->points;
 }
 
@@ -31,13 +34,13 @@ Memento * Rectangle::createMemento(){
 	for (int i = 0; i < points.size(); ++i) {
 		savedPoints.at(i) = new Vector2(points.at(i)->x, points.at(i)->y);
 	}
-	MementoRectangle* state = new MementoRectangle(savedPoints, color);
+	MementoRectangle* state = new MementoRectangle(savedPoints, colorFill, colorLine);
 	return state;
 }
 
 void Rectangle::draw(){
-	api->setColorFill(new Color(255, 0, 0));
-	api->setColorLine(new Color(0, 255, 0));
+	api->setColorFill(colorFill);
+	api->setColorLine(colorLine);
 	api->setLineWidth(2);
 	api->drawShape(points);
 	for (int i = 0; i < 4; ++i) {
@@ -61,7 +64,7 @@ Vector2* Rectangle::getPosition() {
 
 Shape * Rectangle::clone(){
 	std::vector<Vector2*> newPoints(points);
-	Rectangle* r = new Rectangle(api, newPoints, color);
+	Rectangle* r = new Rectangle(api, newPoints, colorFill, colorLine);
 	//memcpy(r, this, sizeof(this));
 	return r;
 }

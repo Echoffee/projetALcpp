@@ -1,8 +1,9 @@
 #include <Memento/mementoRectangle.hpp>
 
-MementoRectangle::MementoRectangle(std::vector<Vector2*> points, int color) {
+MementoRectangle::MementoRectangle(std::vector<Vector2*> points, Color* colorFill, Color* colorLine) {
 	this->points = points;
-	this->color = color;
+	this->colorFill = colorFill;
+	this->colorLine = colorLine;
 }
 
 MementoRectangle::~MementoRectangle() {
