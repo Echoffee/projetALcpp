@@ -19,8 +19,5 @@ void VisitorTranslate::visit(AbstractShape* shape) {
 }
 
 void VisitorTranslate::visit(CompositeShape* shapes) {
-	std::vector<Shape*> group(shapes->getShapes());
-	for (auto shape : group) {
-		shape->accept(this);
-	}
+
 }

@@ -20,8 +20,7 @@ void VisitorGetPosition::visit(AbstractShape* shape) {
 }
 
 void VisitorGetPosition::visit(CompositeShape* shapes) {
-	for (auto shape : shapes->getShapes())
-		shape->accept(this);
+
 }
 
 Vector2* VisitorGetPosition::getPosition() {
