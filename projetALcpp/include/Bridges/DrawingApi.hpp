@@ -7,7 +7,7 @@ class DrawingApi {
 
 public:
 	//Drawing methods
-	virtual void drawRectangle(Rectangle* rectangle) = 0;
+	virtual void drawShape(std::vector<Vector2*> points) = 0;
 
 	//Canvas management methods (called by the 'Application' class maybe)
 	virtual void clear() = 0;

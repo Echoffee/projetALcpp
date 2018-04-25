@@ -12,7 +12,7 @@ public:
 	~SFMLDrawingApi();
 
 	// IDrawingApi methods
-	void drawRectangle(Rectangle* rectangle);
+	void drawShape(std::vector<Vector2*> points);
 
 	void clear();
 	void render();

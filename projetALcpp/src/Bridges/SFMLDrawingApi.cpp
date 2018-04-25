@@ -23,18 +23,19 @@ void SFMLDrawingApi::render() {
 	}
 }
 
-void SFMLDrawingApi::drawRectangle(Rectangle* rectangle) {
+void SFMLDrawingApi::drawShape(std::vector<Vector2*> points) {
 	//sf::RectangleShape* s = new sf::RectangleShape();
 	//s->setPosition(getPosition(rectangle));
 	//s->setOrigin(getOrigin(rectangle));
 	
 	sf::ConvexShape* s = new sf::ConvexShape(4);
 	s->setFillColor(sf::Color::Red);
-	for (int i = 0; i < 4; ++i) {
-		Vector2* v = rectangle->getPoints().at(i);
+	for (int i = 0; i < points.size(); ++i) {
+		Vector2* v = points.at(i);
 		sf::Vector2f sfv = sf::Vector2f(v->x, v->y);
 		s->setPoint(i, sfv);
 	}
+
 	////Rectangle only
 	//sf::Vector2f size = sf::Vector2f();
 	//size.x = rectangle->getSize()->x;

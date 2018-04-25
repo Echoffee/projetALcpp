@@ -1,7 +1,7 @@
 #include <Application/App.hpp>
 #include <Events/Event.hpp>
 
-#include<Events/Handlers/HandlerClose.hpp>
+#include <Events/Handlers/HandlerClose.hpp>
 
 App::App(ApiFactory* factory) {
 	this->drawingApi = factory->createDrawingApi();
@@ -33,13 +33,13 @@ void App::run() {
 			eventHandler->handle(&e, this);
 		}
 
-		if (commands.size() > 0) {
+		while (commands.size() > 0) {
 			commands.front()->execute();
 			commands.pop();
 		}
 		drawingApi->clear();
 		//Drawing stuff
-		drawingApi->drawRectangle(rect);
+		drawingApi->drawShape(rect->getPoints());
 		//
 		drawingApi->render();
 		uiApi->displayWindow();
