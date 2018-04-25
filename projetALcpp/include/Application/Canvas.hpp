@@ -9,6 +9,8 @@ public:
 	virtual std::vector<Shape*> getShapes() = 0;
 	virtual std::vector<Shape*> getShapesAtPoint(Vector2* point) = 0;
 	virtual std::vector<Shape*> getTools() = 0; //Ces Shape seront des Tools : Shape en fait
+	virtual bool isOnCanvas(Vector2* point) = 0;
+	virtual bool isOnToolbar(Vector2* point) = 0;
 	virtual Vector2* getCornerPosition() = 0;
 	virtual Vector2* getSize() = 0;
 	//TODO :	Add rendering/drawing apis ?
