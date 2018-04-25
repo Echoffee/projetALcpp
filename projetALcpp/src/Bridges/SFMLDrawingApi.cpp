@@ -14,7 +14,9 @@ SFMLDrawingApi::~SFMLDrawingApi() {
 }
 
 void SFMLDrawingApi::clear() {
-	this->shapes = std::vector<sf::Drawable*>();
+	for (auto s : shapes)
+		delete s;
+	std::vector<sf::Drawable*>().swap(this->shapes);
 	window->clear();
 }
 
@@ -29,7 +31,7 @@ void SFMLDrawingApi::drawShape(std::vector<Vector2*> points) {
 	//s->setPosition(getPosition(rectangle));
 	//s->setOrigin(getOrigin(rectangle));
 	
-	sf::ConvexShape* s = new sf::ConvexShape(4);
+	sf::ConvexShape* s = new sf::ConvexShape(points.size());
 	s->setFillColor(sf::Color::Red);
 	for (int i = 0; i < points.size(); ++i) {
 		Vector2* v = points.at(i);
