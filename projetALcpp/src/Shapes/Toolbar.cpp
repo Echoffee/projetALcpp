@@ -12,6 +12,7 @@ Toolbar::Toolbar(DrawingApi * api, Rectangle * form)
 	minSize = abs(fminf(sizeX, sizeY));
 	minSize = minSize * 0.9f;
 	emptySlotPosition = new Vector2(sizeX / 2, points.at(0)->y + minSize / 2);
+
 }
 
 Toolbar::Toolbar(DrawingApi * api, Rectangle * form, std::vector<Shape*> shapes)

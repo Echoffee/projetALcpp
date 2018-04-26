@@ -5,6 +5,7 @@ Rectangle::Rectangle(DrawingApi* api, std::vector<Vector2*> points, Color* color
 	this->colorFill = colorFill;
 	this->colorLine = colorLine;
 	this->api = api;
+	this->rotationCenter = this->getPosition();
 }
 
 Rectangle::Rectangle(DrawingApi* api, int x, int y, int width, int height){
@@ -15,6 +16,7 @@ Rectangle::Rectangle(DrawingApi* api, int x, int y, int width, int height){
 	colorFill = new Color(255, 0, 255);
 	colorLine = new Color(0, 255, 255);
 	this->api = api;
+	this->rotationCenter = this->getPosition();
 }
 
 Rectangle::~Rectangle() {
