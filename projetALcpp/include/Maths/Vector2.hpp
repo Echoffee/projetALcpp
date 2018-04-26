@@ -7,6 +7,8 @@ public:
 	~Vector2();
 	float x;
 	float y;
+
+	static Vector2* Lerp(Vector2* a, Vector2* b, Vector2* f);
 };
 
 #endif // !VECTOR2_HPP

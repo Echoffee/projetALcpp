@@ -5,7 +5,7 @@
 #include <Memento/MementoComposite.hpp>
 
 class CompositeShape : public Shape {
-private:
+protected:
 	std::vector<Shape*> shapes;
 
 public:
@@ -30,6 +30,7 @@ public:
 	virtual void accept(Visitor* visitor) override;
 
 	std::vector<Shape*> getShapes();
+	Shape* getShape(int index);
 
 	void setColorFill(Color* color);
 	void setColorLine(Color* color);

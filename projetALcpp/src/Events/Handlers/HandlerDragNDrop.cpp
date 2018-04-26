@@ -4,6 +4,7 @@
 #include <Command/CommandTranslate.hpp>
 #include <Command/CommandAddShape.hpp>
 #include <Command/CommandDeleteShape.hpp>
+#include <Command/CommandAddToToolbar.hpp>
 bool HandlerDragNDrop::task(Event* e, App* env)
 {
 	if (!isInOp) {
@@ -45,6 +46,9 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			else
 				deltaNew = startPos;
 			
+			if (env->isOnToolbar(e->mousePosition, UiElements::ShapeToolbar))
+				env->addCommand(new CommandAddToToolbar(trueShape, env));
+
 			env->addCommand(new CommandDeleteShape(ghostShape, env));
 			env->addCommand(new CommandTranslate(deltaNew->x - startPos->x, deltaNew->y - startPos->y, trueShape));
 			isInOp = false;

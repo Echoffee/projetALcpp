@@ -24,7 +24,10 @@ void VisitorGetPosition::visit(CompositeShape* shapes) {
 }
 
 Vector2* VisitorGetPosition::getPosition() {
-	center->x = center->x / nbShapes;
-	center->y = center->y / nbShapes;
+	if (!computed) {
+		center->x = center->x / nbShapes;
+		center->y = center->y / nbShapes;
+		computed = true;
+	}
 	return center;
 }

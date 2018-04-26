@@ -11,6 +11,7 @@
 //Canvas part
 #include <Application/Canvas.hpp>
 #include <Shapes/Shape.hpp>
+#include <Shapes/Toolbar.hpp>
 class Rectangle; //debug
 class App : public Canvas{
 public:
@@ -29,8 +30,10 @@ public:
 	std::vector<Shape*> getTools(); //Ces Shape seront des Tools : Shape en fait
 	void addShape(Shape* s);
 	void deleteShape(Shape* s);
+	void addShapeToToolbar(Shape* s);
+	void removeShapeFromToolbar(Shape* s);
 	bool isOnCanvas(Vector2* point);
-	bool isOnToolbar(Vector2* point);
+	bool isOnToolbar(Vector2* point, UiElements toolbar = UiElements::All);
 	Vector2* getCornerPosition();
 	Vector2* getSize();
 	void closeWindow();
@@ -44,6 +47,8 @@ private:
 
 	//Rendering objects
 	Rectangle* canvas;
+	Toolbar* toolbarLeft;
+	Toolbar* toolbarTop;
 	std::vector<Shape*> shapes;
 	std::vector<Shape*> uiElements;
 	std::vector<Shape*> tools;

@@ -7,6 +7,7 @@ class VisitorGetPosition : public Visitor {
 private :
 	Vector2* center;
 	int nbShapes;
+	bool computed = false;
 
 public :
 	VisitorGetPosition();

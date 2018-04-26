@@ -1,4 +1,4 @@
-#ifndef ABS_SHAPE_HPP
+#ifndef ABS_SHAPE_floatHPP
 #define ABS_SHAPE_HPP
 
 #include <Visitor/Visitor.hpp>

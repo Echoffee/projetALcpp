@@ -5,6 +5,7 @@
 #include <Events/Handlers/HandlerDragNDrop.hpp>
 
 #include <Visitor/VisitorPoint.hpp>
+#include <Visitor/VisitorScale.hpp>
 
 #include <Shapes/Rectangle.hpp>
 #include <Shapes/CompositeShape.hpp>
@@ -35,11 +36,11 @@ App::~App() {
 
 void App::run() {
 	//Canvas drawing
-	Rectangle* toolbarTop = new Rectangle(drawingApi, 2, 2, 1278, 38);
+	toolbarTop = new Toolbar(drawingApi, new Rectangle(drawingApi, 2, 2, 1278, 38));
 	toolbarTop->setColorFill(new Color(255, 255, 255));
 	toolbarTop->setColorLine(new Color(30, 30, 255));
 
-	Rectangle* toolbarLeft = new Rectangle(drawingApi, 2, 40, 38, 678);
+	toolbarLeft = new Toolbar(drawingApi, new Rectangle(drawingApi, 2, 40, 38, 678));
 	toolbarLeft->setColorFill(new Color(255, 255, 255));
 	toolbarLeft->setColorLine(new Color(30, 30, 255));
 
@@ -51,7 +52,7 @@ void App::run() {
 
 	//Debug goes here
 	Rectangle* rect = new Rectangle(drawingApi, 80, 40, 25, 30);
-	Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);
+	Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);/*
 	Rectangle* rect3 = new Rectangle(drawingApi, 40, 80, 25, 30);
 
 	Rectangle* rect4 = new Rectangle(drawingApi, 30, 60, 25, 30);
@@ -71,11 +72,11 @@ void App::run() {
 	gr3->addShape(gr2);
 	for (int i = 0; i < 200; i++)
 		shapes.push_back(new Rectangle(drawingApi, 70 + 5 * i, 70 + 5 * i, 20, 25));
-	shapes.push_back(gr3);
-	/*CompositeShape* gr1 = new CompositeShape();
+	shapes.push_back(gr3);*/
+	CompositeShape* gr1 = new CompositeShape();
 	gr1->addShape(rect);
 	gr1->addShape(rect2);
-	shapes.push_back(gr1);*/
+	shapes.push_back(gr1);
 	//TODO
 	bool dirty = true;
 	while (uiApi->isRunning()) {
@@ -131,6 +132,18 @@ void App::deleteShape(Shape* s) {
 	shapes.erase(std::remove(shapes.begin(), shapes.end(), s), shapes.end());
 }
 
+void App::addShapeToToolbar(Shape * s)
+{
+	Visitor* v = new VisitorScale(new Vector2(0.5f, 0.5f));
+	s->accept(v);
+	toolbarLeft->addShape(s);
+}
+
+void App::removeShapeFromToolbar(Shape * s)
+{
+	//TODO
+}
+
 bool App::isOnCanvas(Vector2 * point)
 {
 	Vector2* tl, *br;
@@ -176,7 +189,27 @@ std::vector<Shape*> App::getShapesAtPoint(Vector2 * point)
 	return getShapesAtPointMacro(shapes, point);
 }
 
-bool App::isOnToolbar(Vector2 * point)
+bool App::isOnToolbar(Vector2 * point, UiElements toolbar)
 {
-	return getShapesAtPointMacro(uiElements, point).size() > 0;
+	Vector2 * tl, *br;
+	switch (toolbar)
+	{
+	case All:
+		return getShapesAtPointMacro(uiElements, point).size() > 0;
+	case ShapeToolbar:
+		tl = toolbarLeft->getBounds().at(0);
+		br = toolbarLeft->getBounds().at(1);
+
+		return tl->x < point->x && br->x > point->x &&
+			tl->y < point->y && br->y > point->y;
+	case ControlToolbar:
+		tl = toolbarTop->getBounds().at(0);
+		br = toolbarTop->getBounds().at(1);
+
+		return tl->x < point->x && br->x > point->x &&
+			tl->y < point->y && br->y > point->y;
+
+	default:
+		return false;
+	}
 }

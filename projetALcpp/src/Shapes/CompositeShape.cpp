@@ -66,6 +66,11 @@ std::vector<Shape*> CompositeShape::getShapes() {
 	return shapes;
 }
 
+Shape * CompositeShape::getShape(int index)
+{
+	return shapes.at(index);
+}
+
 void CompositeShape::setColorFill(Color * color)
 {
 	for (auto shape : shapes)
