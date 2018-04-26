@@ -15,6 +15,7 @@ private:
 	Vector2* toolsMaxSize;
 	Vector2* buttonSize;
 	float minSize;
+	std::vector<Vector2*> originalScale;
 
 public:
 	Toolbar(DrawingApi* api, Rectangle* form);

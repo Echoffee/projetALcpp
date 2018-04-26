@@ -40,6 +40,7 @@ bool HandlerCreateFromToolbar::task(Event* e, App* env) {
 				if (env->isOnCanvas(bounds.at(0)) && env->isOnCanvas(bounds.at(1)))
 				{
 					Shape* finalShape = trueShape->clone();
+
 					env->addCommand(new CommandAddShape(finalShape, env));
 					Command* command = new CommandTranslate(e->mousePosition->x - trueShape->getPosition()->x, e->mousePosition->y - trueShape->getPosition()->y, finalShape);
 					env->addCommand(command);

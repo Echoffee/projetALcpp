@@ -27,16 +27,19 @@ void VisitorScale::visit(CompositeShape* shapes) {
 	if (!hasVisitedGroup) {
 		hasVisitedGroup = true;
 		float shapesCount = shapes->getShapes().size();
-		Vector2* pos_o = shapes->getPosition();
+		Vector2* origin = shapes->getPosition();
 		for (int i = 0; i < shapesCount; ++i) {
-			Shape* s = shapes->getShape(i);
-			Vector2* goal = Vector2::Lerp(pos_o, s->getPosition(), scale);
-			Vector2* t = new Vector2(goal->x - s->getPosition()->x, goal->y - s->getPosition()->y);
-			Visitor* v = new VisitorTranslate(t);
-			s->accept(v);
-			delete v;
+			Shape* shape = shapes->getShape(i);
+			Vector2* goal = Vector2::Lerp(origin, shape->getPosition(), scale);
+
+			Vector2* direction = new Vector2(goal->x - shape->getPosition()->x, goal->y - shape->getPosition()->y);
+			Visitor* visitor = new VisitorTranslate(direction);
+
+			shape->accept(visitor);
+
+			delete visitor;
 			delete goal;
-			delete t;
+			delete direction;
 		}
 
 		hasVisitedGroup = false;

@@ -154,8 +154,6 @@ void App::deleteShape(Shape* s) {
 
 void App::addShapeToToolbar(Shape * s)
 {
-	Visitor* v = new VisitorScale(new Vector2(0.5f, 0.5f));
-	s->accept(v);
 	toolbarLeft->addShape(s);
 }
 

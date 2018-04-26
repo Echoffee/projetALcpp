@@ -43,13 +43,21 @@ void Toolbar::draw()
 
 void Toolbar::addShape(Shape* s) {
 	shapes.push_back(s);
+
 	std::vector<Vector2*> bounds = s->getBounds();
 	float sizeX = bounds.at(1)->x - bounds.at(0)->x;
 	float sizeY = bounds.at(1)->y - bounds.at(0)->y;
 	float scale = minSize / fmaxf(sizeX, sizeY);
+
 	Vector2* vscale = new Vector2(scale, scale);
 	Visitor* v = new VisitorScale(vscale);
 	s->accept(v);
+
+	Vector2* shapeScale = vscale->copy();
+	shapeScale->x = 1 / shapeScale->x;
+	shapeScale->y = 1 / shapeScale->y;
+	originalScale.push_back(shapeScale);
+
 	//shape rescaled
 	Vector2* pos_start = s->getPosition();
 	Vector2* vtranslate = new Vector2(emptySlotPosition->x - pos_start->x, emptySlotPosition->y - pos_start->y);
@@ -91,8 +99,13 @@ std::vector<Vector2*> Toolbar::getBounds()
 
 Shape* Toolbar::getShapeAtPosition(Vector2* position) {
 	int index = (position->y - getBounds().at(0)->y) / minSize;
-	if (index < getShapes().size())
-		return getShape(index);
+	if (index < getShapes().size()) {
+		Shape* shape = getShape(index)->clone();
+		Visitor* visitScale = new VisitorScale(originalScale.at(index));
+		shape->accept(visitScale);
+		delete visitScale;
+		return shape;
+	}
 	else
 		return nullptr;
 }
