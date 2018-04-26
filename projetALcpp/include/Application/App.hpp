@@ -27,7 +27,10 @@ public:
 	//Canvas stuff
 	std::vector<Shape*> getShapes();
 	std::vector<Shape*> getShapesAtPoint(Vector2* point);
+	std::vector<Shape*> getShapesBetweenTwoPoints(Vector2* topLeft, Vector2* bottomRight);
 	std::vector<Shape*> getTools(); //Ces Shape seront des Tools : Shape en fait
+	std::vector<Shape*> getSelectedShapes();
+	void setSelectedShapes(std::vector<Shape*> shapes);
 	void addShape(Shape* s);
 	void deleteShape(Shape* s);
 	void addShapeToToolbar(Shape* s);
@@ -51,8 +54,9 @@ private:
 	Toolbar* toolbarLeft;
 	Toolbar* toolbarTop;
 	std::vector<Shape*> shapes;
-	std::vector<Shape*> uiElements;
+	std::vector<Shape*> uiElements;	//to be removed maybe
 	std::vector<Shape*> tools;
+	std::vector<Shape*> selectedShapes;
 
 };
 

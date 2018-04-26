@@ -11,7 +11,7 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 		if (e->type == EventType::MouseButtonDown && e->keyid == 0 && env->isOnCanvas(e->mousePosition)) {
 			shapes = env->getShapesAtPoint(e->mousePosition);
 			if (shapes.size() > 0) {
-				trueShape = shapes.front();
+				trueShape = shapes.back();
 			}
 			else {
 				return false;

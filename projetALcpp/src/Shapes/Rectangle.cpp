@@ -1,5 +1,10 @@
 #include <Shapes/Rectangle.hpp>
 
+Rectangle::Rectangle()
+{
+	//why tho
+}
+
 Rectangle::Rectangle(DrawingApi* api, std::vector<Vector2*> points, Color* colorFill, Color* colorLine) {
 	this->points = points;
 	this->colorFill = colorFill;

@@ -9,7 +9,10 @@ class Canvas {
 public:
 	virtual std::vector<Shape*> getShapes() = 0;
 	virtual std::vector<Shape*> getShapesAtPoint(Vector2* point) = 0;
+	virtual std::vector<Shape*> getShapesBetweenTwoPoints(Vector2* topLeft, Vector2* bottomRight) = 0;
 	virtual std::vector<Shape*> getTools() = 0; //Ces Shape seront des Tools : Shape en fait
+	virtual std::vector<Shape*> getSelectedShapes() = 0;
+	virtual void setSelectedShapes(std::vector<Shape*> shapes) = 0;
 	virtual void addShape(Shape* s) = 0;
 	virtual void deleteShape(Shape* s) = 0;
 	virtual void addShapeToToolbar(Shape* s) = 0;

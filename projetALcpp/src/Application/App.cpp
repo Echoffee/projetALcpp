@@ -4,12 +4,13 @@
 #include <Events/Handlers/HandlerClose.hpp>
 #include <Events/Handlers/HandlerDragNDrop.hpp>
 #include <Events/Handlers/HandlerCreateFromToolbar.hpp>
-
+#include <Events/handlers/HandlerSelection.hpp>
 #include <Visitor/VisitorPoint.hpp>
 #include <Visitor/VisitorScale.hpp>
 
 #include <Shapes/Rectangle.hpp>
 #include <Shapes/CompositeShape.hpp>
+#include <Shapes/SelectionRectangle.hpp>
 
 
 App::App(ApiFactory* factory) {
@@ -18,9 +19,11 @@ App::App(ApiFactory* factory) {
 	Handler* hClose = new HandlerClose();
 	Handler* hDragNDrop = new HandlerDragNDrop();
 	Handler* hCreateFromToolbar = new HandlerCreateFromToolbar();
+	Handler* hSelection = new HandlerSelection(new SelectionRectangle(drawingApi));
 
 	hClose->setSuccessor(hDragNDrop);
 	hDragNDrop->setSuccessor(hCreateFromToolbar);
+	hCreateFromToolbar->setSuccessor(hSelection);
 
 	this->eventHandler = hClose;
 }
@@ -95,8 +98,8 @@ void App::run() {
 			delete c;
 		}
 
-		drawingApi->clear();
 		if (dirty) {
+			drawingApi->clear();
 
 			//Drawing stuff
 			//drawingApi->drawShape(rect->getPoints());
@@ -128,6 +131,16 @@ std::vector<Shape*> App::getShapes() {
 
 std::vector<Shape*> App::getTools() {
 	return this->tools;
+}
+
+std::vector<Shape*> App::getSelectedShapes()
+{
+	return selectedShapes;
+}
+
+void App::setSelectedShapes(std::vector<Shape*> shapes)
+{
+	selectedShapes = shapes;
 }
 
 void App::addShape(Shape * s)
@@ -197,6 +210,20 @@ std::vector<Shape*> getShapesAtPointMacro(std::vector<Shape*> shapes, Vector2* p
 std::vector<Shape*> App::getShapesAtPoint(Vector2 * point)
 {
 	return getShapesAtPointMacro(shapes, point);
+}
+
+std::vector<Shape*> App::getShapesBetweenTwoPoints(Vector2 * topLeft, Vector2 * bottomRight)
+{
+	std::vector<Shape*> result = std::vector<Shape*>();
+	for (auto s : shapes) {
+		std::vector<Vector2*> bounds = s->getBounds();
+		Vector2* tl = bounds.at(0);
+		Vector2* br = bounds.at(1);
+		if (tl->x > topLeft->x && tl->y > topLeft->y && br->x < bottomRight->x && br->y < bottomRight->y)
+			result.push_back(s);
+	}
+
+	return result;
 }
 
 bool App::isOnToolbar(Vector2 * point, UiElements toolbar)
