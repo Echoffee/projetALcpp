@@ -14,6 +14,7 @@ public:
 	virtual void deleteShape(Shape* s) = 0;
 	virtual void addShapeToToolbar(Shape* s) = 0;
 	virtual void removeShapeFromToolbar(Shape* s) = 0;
+	virtual Shape* getShapeFromToolbar(Vector2* point) = 0;
 	virtual bool isOnCanvas(Vector2* point) = 0;
 	virtual bool isOnToolbar(Vector2* point, UiElements toolbar = UiElements::All) = 0;
 	virtual Vector2* getCornerPosition() = 0;

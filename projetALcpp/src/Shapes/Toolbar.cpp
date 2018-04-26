@@ -88,3 +88,11 @@ std::vector<Vector2*> Toolbar::getBounds()
 {
 	return form->getBounds();
 }
+
+Shape* Toolbar::getShapeAtPosition(Vector2* position) {
+	int index = (position->y - getBounds().at(0)->y) / minSize;
+	if (index < getShapes().size())
+		return getShape(index);
+	else
+		return nullptr;
+}
