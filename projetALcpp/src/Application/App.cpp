@@ -5,6 +5,7 @@
 #include <Events/Handlers/HandlerDragNDrop.hpp>
 #include <Events/Handlers/HandlerCreateFromToolbar.hpp>
 #include <Events/handlers/HandlerSelection.hpp>
+#include <Events/Handlers/HandlerContextMenu.hpp>
 #include <Visitor/VisitorPoint.hpp>
 #include <Visitor/VisitorScale.hpp>
 
@@ -20,10 +21,13 @@ App::App(ApiFactory* factory) {
 	Handler* hDragNDrop = new HandlerDragNDrop();
 	Handler* hCreateFromToolbar = new HandlerCreateFromToolbar();
 	Handler* hSelection = new HandlerSelection(new SelectionRectangle(drawingApi));
+	Handler* hContextMenu = new HandlerContextMenu(drawingApi);
 
-	hClose->setSuccessor(hDragNDrop);
+	hClose->setSuccessor(hContextMenu);
+	hContextMenu->setSuccessor(hDragNDrop);
 	hDragNDrop->setSuccessor(hCreateFromToolbar);
 	hCreateFromToolbar->setSuccessor(hSelection);
+
 
 	this->eventHandler = hClose;
 }
@@ -57,14 +61,14 @@ void App::run() {
 	uiElements.push_back(toolbarLeft);
 
 	//Debug goes here
-	Rectangle* rect = new Rectangle(drawingApi, 80, 40, 25, 30);
+	/*Rectangle* rect = new Rectangle(drawingApi, 80, 40, 25, 30);
 	Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);/*
 	Rectangle* rect3 = new Rectangle(drawingApi, 40, 80, 25, 30);
 
 	Rectangle* rect4 = new Rectangle(drawingApi, 30, 60, 25, 30);
 	Rectangle* rect5 = new Rectangle(drawingApi, 100, 150, 25, 30);
 	*/
-	CompositeShape* gr1 = new CompositeShape();
+	/*CompositeShape* gr1 = new CompositeShape();
 	gr1->addShape(rect);
 	gr1->addShape(rect2);/*
 	gr1->addShape(rect3);
@@ -79,9 +83,9 @@ void App::run() {
 	for (int i = 0; i < 200; i++)
 		shapes.push_back(new Rectangle(drawingApi, 70 + 5 * i, 70 + 5 * i, 20, 25));
 	shapes.push_back(gr3);*/
-	shapes.push_back(gr1);
+	/*shapes.push_back(gr1);
 	rect = new Rectangle(drawingApi, 80, 40, 25, 30);
-	shapes.push_back(rect);
+	shapes.push_back(rect);*/
 	//TODO
 	bool dirty = true;
 	Event* e = new Event();

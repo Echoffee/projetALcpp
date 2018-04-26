@@ -13,6 +13,7 @@ public:
 	virtual void setLineWidth(float width) = 0;
 	virtual void drawShape(std::vector<Vector2*> points) = 0;
 	virtual void drawLine(Vector2* start, Vector2* end) = 0;
+	virtual void drawText(Vector2* position, std::string text) = 0;
 	//Canvas management methods (called by the 'Application' class maybe)
 	virtual void clear() = 0;
 	virtual void render() = 0;

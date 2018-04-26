@@ -3,6 +3,8 @@
 SFMLDrawingApi::SFMLDrawingApi(sf::RenderWindow* w) {
 	this->window = w;
 	this->shapes = std::vector<sf::Drawable*>();
+	this->font = new sf::Font();
+	font->loadFromFile("res/OpenSans-Regular.ttf");
 }
 
 SFMLDrawingApi::~SFMLDrawingApi() {
@@ -81,4 +83,13 @@ void SFMLDrawingApi::drawLine(Vector2 * start, Vector2 * end)
 	l->setSize(sf::Vector2f(length, lineWidth));
 	l->rotate(57.2958 * atan2f(end->y - start->y, end->x - start->x));
 	shapes.push_back(l);
+}
+
+void SFMLDrawingApi::drawText(Vector2* position, std::string text) {
+	sf::Text* t = new sf::Text(text, *font);
+	t->setFillColor(sf::Color(colorLine->r, colorLine->g, colorLine->b, colorLine->a));
+	t->setCharacterSize(17);
+	t->setPosition(sf::Vector2f(position->x, position->y));
+	t->setString(text);
+	shapes.push_back(t);
 }

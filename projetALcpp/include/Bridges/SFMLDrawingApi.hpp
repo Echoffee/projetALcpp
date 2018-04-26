@@ -19,6 +19,7 @@ public:
 	void setLineWidth(float width);
 	void drawShape(std::vector<Vector2*> points);
 	void drawLine(Vector2* start, Vector2* end);
+	void drawText(Vector2* position, std::string text);
 
 	void clear();
 	void render();
@@ -27,6 +28,7 @@ private:
 	// Window
 	sf::RenderWindow* window;
 	std::vector<sf::Drawable*> shapes;
+	sf::Font* font;
 
 	Color* colorFill;
 	Color* colorLine;
