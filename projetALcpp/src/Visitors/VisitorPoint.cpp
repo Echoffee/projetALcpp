@@ -19,7 +19,7 @@ void VisitorPoint::visit(AbstractShape* shape) {
 		float miny = (c->y < p->y ? c->y : p->y);
 		float maxy = (c->y > p->y ? c->y : p->y);
 		if (minx < point->x && point->x < maxx && miny < point->y && point->y < maxy)
-			result = true;
+			result = shape->isPointable();
 
 	}
 	delete c;

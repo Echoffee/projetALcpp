@@ -52,6 +52,11 @@ std::vector<Vector2*> AbstractShape::getBounds()
 	return result;
 }
 
+bool AbstractShape::isPointable()
+{
+	return pointable;
+}
+
 void AbstractShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 }

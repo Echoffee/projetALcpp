@@ -1,4 +1,4 @@
-#ifndef ABS_SHAPE_floatHPP
+#ifndef ABS_SHAPE_HPP
 #define ABS_SHAPE_HPP
 
 #include <Visitor/Visitor.hpp>
@@ -12,6 +12,7 @@ protected:
 	Color* colorFill;
 	Color* colorLine;
 	DrawingApi* api;
+	bool pointable = true;
 
 public:
 	// Shape methods
@@ -24,6 +25,7 @@ public:
 	Color* getColorFill();
 	Color* getColorLine();
 	std::vector<Vector2*> getBounds();
+	bool isPointable();
 };
 
 #endif

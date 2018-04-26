@@ -7,6 +7,7 @@ SelectionRectangle::SelectionRectangle(DrawingApi * api)
 	points.push_back(new Vector2(0, 0));
 	points.push_back(new Vector2(0, 0));
 	this->api = api;
+	pointable = false;
 
 }
 
