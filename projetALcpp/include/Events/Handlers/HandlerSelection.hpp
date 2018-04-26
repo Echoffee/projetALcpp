@@ -9,7 +9,7 @@ private:
 	CompositeShape* tempSelection;
 	bool isInOp = false;
 	Vector2* startPos;
-
+	Vector2* oldPos;
 public:
 	HandlerSelection(SelectionRectangle* selectionBox);
 	bool task(Event* e, App* env);

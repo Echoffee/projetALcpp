@@ -21,12 +21,17 @@ bool HandlerSelection::task(Event * e, App * env)
 			env->addCommand(new CommandDeleteShape(selectionBox, env));
 			env->addCommand(new CommandAddShape(selectionBox, env));
 			env->addCommand(new CommandEditSelection(selectionBox, startPos, e->mousePosition->copy()));
+			oldPos = startPos;
 			return true;
 		}
 	}
 	else {
 		if (e->type == EventType::MouseMove) {
-			env->addCommand(new CommandEditSelection(selectionBox, startPos, e->mousePosition->copy()));
+			Vector2* v = e->mousePosition->copy();
+			if (!env->isOnCanvas(v))
+				v = oldPos;
+			env->addCommand(new CommandEditSelection(selectionBox, startPos, v));
+			oldPos = v;
 			return true;
 		}
 
