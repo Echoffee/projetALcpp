@@ -10,4 +10,7 @@ Vector2::~Vector2() {
 
 }
 
+Vector2* Vector2::copy() {
+	return new Vector2(this->x, this->y);
+}
 

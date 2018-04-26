@@ -17,6 +17,7 @@ void VisitorGetPosition::visit(AbstractShape* shape) {
 	Vector2* point = shape->getPosition();
 	center->x += point->x;
 	center->y += point->y;
+	delete point;
 }
 
 void VisitorGetPosition::visit(CompositeShape* shapes) {

@@ -81,16 +81,19 @@ void App::run() {
 	shapes.push_back(gr1);*/
 	//TODO
 	while (uiApi->isRunning()) {
-		Event e;
+		Event* e = new Event();
 
-		while (uiApi->getEvent(&e)) {
-			eventHandler->handle(&e, this);
+		while (uiApi->getEvent(e)) {
+			eventHandler->handle(e, this);
 		}
 
 		while (commands.size() > 0) {
 			commands.front()->execute();
+			Command* c = commands.front();
 			commands.pop();
+			delete c;
 		}
+
 		drawingApi->clear();
 		//Drawing stuff
 		//drawingApi->drawShape(rect->getPoints());
@@ -104,6 +107,7 @@ void App::run() {
 		//
 		drawingApi->render();
 		uiApi->displayWindow();
+		delete e;
 	}
 }
 

@@ -7,13 +7,15 @@ CommandTranslate::CommandTranslate(float x, float y, Shape* shape) {
 }
 
 CommandTranslate::~CommandTranslate() {
-
+	delete direction;
+	delete savedState;
 }
 
 void CommandTranslate::execute() {
 	savedState = shape->createMemento();
-	VisitorTranslate* visitor = new VisitorTranslate(direction);
+	VisitorTranslate* visitor = new VisitorTranslate(new Vector2(direction->x, direction->y));
 	shape->accept(visitor);
+	delete visitor;
 }
 
 void CommandTranslate::unexecute() {

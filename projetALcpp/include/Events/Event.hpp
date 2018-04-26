@@ -2,11 +2,13 @@
 #define EVENT_HPP
 
 #include <Events/EventType.hpp>
-class Vector2;
+#include <Maths/Vector2.hpp>
+
 class Event {
 public:
 	Event();
 	Event(EventType t);
+	~Event();
 	EventType type;
 	int keyid;
 	Vector2* mousePosition;

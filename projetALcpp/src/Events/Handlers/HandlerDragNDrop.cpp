@@ -22,8 +22,8 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			ghostShape->setColorFill(c);
 			Command* command = new CommandAddShape(ghostShape, env);
 			env->addCommand(command);
-			startPos = e->mousePosition;
-			deltaOld = e->mousePosition;
+			startPos = e->mousePosition->copy();
+			deltaOld = e->mousePosition->copy();
 			isInOp = true;
 
 			return true;
@@ -31,22 +31,29 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 	}
 	else {
 		if (e->type == EventType::MouseMove) {
-			deltaNew = e->mousePosition;
+			deltaNew = e->mousePosition->copy();
 			Command* command = new CommandTranslate(deltaNew->x - deltaOld->x, deltaNew->y - deltaOld->y, ghostShape);
 			env->addCommand(command);
+			delete deltaOld;
 			deltaOld = deltaNew;
 			return true;
 		}
 
 		if (e->type == EventType::MouseButtonUp && e->keyid == 0) {
+			if (deltaNew != nullptr)
+				delete deltaNew;
+
 			if (env->isOnCanvas(e->mousePosition))
-				deltaNew = e->mousePosition;
+				deltaNew = e->mousePosition->copy();
 			else
-				deltaNew = startPos;
+				deltaNew = startPos->copy();
 			
 			env->addCommand(new CommandDeleteShape(ghostShape, env));
 			env->addCommand(new CommandTranslate(deltaNew->x - startPos->x, deltaNew->y - startPos->y, trueShape));
 			isInOp = false;
+
+			delete deltaNew;
+			delete startPos;
 			return true;
 		}
 	}
