@@ -36,9 +36,10 @@ Color * AbstractShape::getColorLine()
 
 std::vector<Vector2*> AbstractShape::getBounds()
 {
-	std::vector<Vector2*> result = std::vector<Vector2*>();
-	Vector2* tl = new Vector2(points.at(0)->x, points.at(0)->y);
-	Vector2* br = new Vector2(points.at(0)->x, points.at(0)->y);
+	std::vector<Vector2*> result;
+	Vector2* tl = points.at(0)->copy();
+	Vector2* br = points.at(0)->copy();
+
 	for (auto p : points) {
 		tl->x = (p->x < tl->x ? p->x : tl->x);
 		tl->y = (p->y < tl->y ? p->y : tl->y);

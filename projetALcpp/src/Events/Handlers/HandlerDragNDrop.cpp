@@ -41,14 +41,16 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 		}
 
 		if (e->type == EventType::MouseButtonUp && e->keyid == 0) {
-			std::vector<Vector2*> bounds = ghostShape->getBounds();
-			if (deltaNew != nullptr)
-				delete deltaNew;
+			std::vector<Vector2*> bounds(ghostShape->getBounds());
 
-			if (env->isOnCanvas(bounds.at(0)) && env->isOnCanvas(bounds.at(1)))
-				deltaNew = e->mousePosition->copy();
-			else
-				deltaNew = startPos->copy();
+			if (env->isOnCanvas(bounds.at(0)) && env->isOnCanvas(bounds.at(1))) {
+				deltaNew->x = e->mousePosition->x;
+				deltaNew->y = e->mousePosition->y;
+			}
+			else {
+				deltaNew->x = startPos->x;
+				deltaNew->y = startPos->y;
+			}
 			
 			if (env->isOnToolbar(e->mousePosition, UiElements::ShapeToolbar))
 				env->addCommand(new CommandAddToToolbar(trueShape, env));
@@ -57,8 +59,8 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 			env->addCommand(new CommandTranslate(deltaNew->x - startPos->x, deltaNew->y - startPos->y, trueShape));
 			isInOp = false;
 
-			delete deltaNew;
-			delete startPos;
+			//delete deltaNew;
+			//delete startPos;
 			return true;
 		}
 	}

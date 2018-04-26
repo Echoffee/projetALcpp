@@ -81,8 +81,8 @@ void App::run() {
 	shapes.push_back(rect);
 	//TODO
 	bool dirty = true;
+	Event* e = new Event();
 	while (uiApi->isRunning()) {
-		Event* e = new Event();
 		while (uiApi->getEvent(e)) {
 			eventHandler->handle(e, this);
 		}
@@ -95,16 +95,18 @@ void App::run() {
 			delete c;
 		}
 
+		drawingApi->clear();
 		if (dirty) {
 
-			drawingApi->clear();
 			//Drawing stuff
 			//drawingApi->drawShape(rect->getPoints());
 			canvas->draw();
 			for (auto s : uiElements)
 				s->draw();
+
 			for (auto s : tools)
 				s->draw();
+
 			for (auto s : shapes)
 				s->draw();
 			//
@@ -112,8 +114,8 @@ void App::run() {
 			uiApi->displayWindow();
 			dirty = false;
 		}
-		delete e;
 	}
+	delete e;
 }
 
 void App::addCommand(Command* command) {

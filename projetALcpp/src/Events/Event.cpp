@@ -8,7 +8,7 @@ Event::Event()
 
 Event::Event(EventType t) {
 	this->type = t;
-	mousePosition = new Vector2(0, 0);
+	this->mousePosition = new Vector2(0, 0);
 }
 
 Event::~Event() {
