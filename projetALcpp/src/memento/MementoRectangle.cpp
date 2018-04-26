@@ -9,4 +9,8 @@ MementoRectangle::MementoRectangle(std::vector<Vector2*> points, Color* colorFil
 MementoRectangle::~MementoRectangle() {
 	for (auto point : points)
 		delete point;
+	std::vector<Vector2*>().swap(points);
+
+	delete colorFill;
+	delete colorLine;
 }

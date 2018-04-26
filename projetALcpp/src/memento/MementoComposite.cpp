@@ -8,4 +8,5 @@ MementoComposite::MementoComposite(std::vector<Shape*> shapes) {
 MementoComposite::~MementoComposite() {
 	for (auto shape : savedShapes)
 		delete shape;
+	std::vector<Shape*>().swap(savedShapes);
 }

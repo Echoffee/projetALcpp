@@ -36,7 +36,9 @@ bool SFMLUIApi::getEvent(Event * event) {
 					event->keyid = 0;
 				if (sfe.mouseButton.button == sf::Mouse::Right)
 					event->keyid = 1;
-				event->mousePosition = new Vector2(sfe.mouseButton.x, sfe.mouseButton.y);
+				//event->mousePosition = new Vector2(sfe.mouseButton.x, sfe.mouseButton.y);
+				event->mousePosition->x = sfe.mouseButton.x;
+				event->mousePosition->y = sfe.mouseButton.y;
 				break;
 
 			case sf::Event::EventType::MouseButtonReleased:
@@ -45,12 +47,18 @@ bool SFMLUIApi::getEvent(Event * event) {
 					event->keyid = 0;
 				if (sfe.mouseButton.button == sf::Mouse::Right)
 					event->keyid = 1;
-				event->mousePosition = new Vector2(sfe.mouseButton.x, sfe.mouseButton.y);
+
+				event->mousePosition->x = sfe.mouseButton.x;
+				event->mousePosition->y = sfe.mouseButton.y;
+				//event->mousePosition = new Vector2(sfe.mouseButton.x, sfe.mouseButton.y);
 				break;
 
 			case sf::Event::EventType::MouseMoved:
 				event->type = EventType::MouseMove;
-				event->mousePosition = new Vector2(sfe.mouseMove.x, sfe.mouseMove.y);
+
+				event->mousePosition->x = sfe.mouseMove.x;
+				event->mousePosition->y = sfe.mouseMove.y;
+				//event->mousePosition = new Vector2(sfe.mouseMove.x, sfe.mouseMove.y);
 				break;
 
 			default:

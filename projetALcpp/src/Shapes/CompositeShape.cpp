@@ -1,5 +1,6 @@
 #include <Shapes/CompositeShape.hpp>
 #include <Visitor/VisitorGetPosition.hpp>
+#include <algorithm>
 
 CompositeShape::CompositeShape() {
 	rotationCenter = new Vector2(0, 0);
@@ -12,6 +13,8 @@ CompositeShape::CompositeShape(std::vector<Shape*> shapes) {
 CompositeShape::~CompositeShape() {
 	for (auto shape : shapes)
 		delete shape;
+	delete rotationCenter;
+	std::vector<Shape*>().swap(shapes);
 }
 
 void CompositeShape::setMemento(Memento * m){
@@ -30,6 +33,7 @@ Memento * CompositeShape::createMemento(){
 
 void CompositeShape::addShape(Shape* shape){
 	shapes.push_back(shape);
+	delete rotationCenter;
 	rotationCenter = this->getPosition();
 }
 
@@ -54,12 +58,11 @@ Vector2* CompositeShape::getOrigin() {
 }
 
 Shape* CompositeShape::clone(){
-	std::vector<Shape*> newShapes;
-	for (auto shape : shapes) {
-		newShapes.push_back(shape->clone());
-	}
+	CompositeShape* cloneShape = new CompositeShape();
+	for (auto shape : shapes)
+		cloneShape->addShape(shape->clone());
 
-	return new CompositeShape(newShapes);
+	return cloneShape;
 }
 
 std::vector<Shape*> CompositeShape::getShapes() {
@@ -85,12 +88,12 @@ void CompositeShape::setColorLine(Color * color)
 
 Color * CompositeShape::getColorFill()
 {
-	return new Color(255, 255, 255, 0);
+	return shapes.at(0)->getColorFill();
 }
 
 Color * CompositeShape::getColorLine()
 {
-	return new Color(255, 0, 0, 128);
+	return shapes.at(0)->getColorLine();
 }
 
 std::vector<Vector2*> CompositeShape::getBounds()
@@ -123,5 +126,11 @@ void CompositeShape::accept(Visitor* visitor) {
 
 	for (auto shape : newShapes)
 		shape->accept(visitor);
+
+	for (auto shape : shapes)
+		delete shape;
+	std::vector<Shape*>().swap(shapes);
+	//shapes.erase(shapes.begin(), shapes.end());
+
 	this->shapes = newShapes;
 }

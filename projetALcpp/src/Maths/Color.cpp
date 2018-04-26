@@ -6,3 +6,7 @@ Color::Color(short red, short green, short blue, short alpha) {
 	b = blue;
 	a = alpha;
 }
+
+Color::~Color() {
+
+}

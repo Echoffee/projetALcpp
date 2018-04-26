@@ -87,8 +87,10 @@ void App::run() {
 
 		while (commands.size() > 0) {
 			commands.front()->execute();
+			Command* c = commands.front();
 			commands.pop();
 			dirty = true;
+			delete c;
 		}
 
 		if (dirty) {
@@ -107,6 +109,7 @@ void App::run() {
 		drawingApi->render();
 		uiApi->displayWindow();
 		dirty = false;
+		delete e;
 		}
 	}
 }

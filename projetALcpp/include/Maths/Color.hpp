@@ -4,6 +4,7 @@
 class Color {
 public:
 	Color(short red = 0, short green = 0, short blue = 0, short alpha = 255);
+	~Color();
 	short r;
 	short g;
 	short b;

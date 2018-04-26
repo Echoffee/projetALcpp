@@ -11,8 +11,8 @@ VisitorTranslate::~VisitorTranslate() {
 }
 
 void VisitorTranslate::visit(AbstractShape* shape) {
-	std::vector<Vector2*> points(shape->getPoints());
-	for (auto point : points) {
+	//std::vector<Vector2*> points(shape->getPoints());
+	for (auto point : shape->getPoints()) {
 		point->x += direction->x;
 		point->y += direction->y;
 	}

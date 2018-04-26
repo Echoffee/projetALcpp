@@ -24,4 +24,7 @@ Vector2 * Vector2::Lerp(Vector2 * a, Vector2 * b, Vector2* f)
 	return result;
 }
 
+Vector2* Vector2::copy() {
+	return new Vector2(this->x, this->y);
+}
 
