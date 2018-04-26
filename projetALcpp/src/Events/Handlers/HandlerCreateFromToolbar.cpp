@@ -24,7 +24,6 @@ bool HandlerCreateFromToolbar::task(Event* e, App* env) {
 		}
 	}
 	else {
-		{
 			if (e->type == EventType::MouseMove) {
 				deltaNew = e->mousePosition->copy();
 				Command* command = new CommandTranslate(deltaNew->x - deltaOld->x, deltaNew->y - deltaOld->y, ghostShape);
@@ -52,6 +51,7 @@ bool HandlerCreateFromToolbar::task(Event* e, App* env) {
 				delete deltaNew;
 				return true;
 			}
-		}
 	}
+
+	return false;
 }
