@@ -32,6 +32,7 @@ public:
 	void deleteShape(Shape* s);
 	void addShapeToToolbar(Shape* s);
 	void removeShapeFromToolbar(Shape* s);
+	Shape* getShapeFromToolbar(Vector2* point);
 	bool isOnCanvas(Vector2* point);
 	bool isOnToolbar(Vector2* point, UiElements toolbar = UiElements::All);
 	Vector2* getCornerPosition();

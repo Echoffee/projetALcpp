@@ -3,6 +3,7 @@
 
 #include <Events/Handlers/HandlerClose.hpp>
 #include <Events/Handlers/HandlerDragNDrop.hpp>
+#include <Events/Handlers/HandlerCreateFromToolbar.hpp>
 
 #include <Visitor/VisitorPoint.hpp>
 #include <Visitor/VisitorScale.hpp>
@@ -16,8 +17,10 @@ App::App(ApiFactory* factory) {
 	this->uiApi = factory->createRenderingApi();
 	Handler* hClose = new HandlerClose();
 	Handler* hDragNDrop = new HandlerDragNDrop();
+	Handler* hCreateFromToolbar = new HandlerCreateFromToolbar();
 
 	hClose->setSuccessor(hDragNDrop);
+	hDragNDrop->setSuccessor(hCreateFromToolbar);
 
 	this->eventHandler = hClose;
 }
@@ -144,6 +147,11 @@ void App::addShapeToToolbar(Shape * s)
 void App::removeShapeFromToolbar(Shape * s)
 {
 	//TODO
+}
+
+Shape * App::getShapeFromToolbar(Vector2 * point)
+{
+	return toolbarLeft->getShapeAtPosition(point);
 }
 
 bool App::isOnCanvas(Vector2 * point)
