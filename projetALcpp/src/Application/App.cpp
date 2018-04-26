@@ -52,15 +52,15 @@ void App::run() {
 
 	//Debug goes here
 	Rectangle* rect = new Rectangle(drawingApi, 80, 40, 25, 30);
-	/*Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);/*
+	Rectangle* rect2 = new Rectangle(drawingApi, 40, 40, 25, 30);/*
 	Rectangle* rect3 = new Rectangle(drawingApi, 40, 80, 25, 30);
 
 	Rectangle* rect4 = new Rectangle(drawingApi, 30, 60, 25, 30);
 	Rectangle* rect5 = new Rectangle(drawingApi, 100, 150, 25, 30);
-
+	*/
 	CompositeShape* gr1 = new CompositeShape();
 	gr1->addShape(rect);
-	gr1->addShape(rect2);
+	gr1->addShape(rect2);/*
 	gr1->addShape(rect3);
 
 	CompositeShape* gr2 = new CompositeShape();
@@ -73,6 +73,8 @@ void App::run() {
 	for (int i = 0; i < 200; i++)
 		shapes.push_back(new Rectangle(drawingApi, 70 + 5 * i, 70 + 5 * i, 20, 25));
 	shapes.push_back(gr3);*/
+	shapes.push_back(gr1);
+	rect = new Rectangle(drawingApi, 80, 40, 25, 30);
 	shapes.push_back(rect);
 	//TODO
 	bool dirty = true;

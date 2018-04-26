@@ -14,6 +14,7 @@ private:
 	Vector2* emptySlotPosition;
 	Vector2* toolsMaxSize;
 	Vector2* buttonSize;
+	float minSize;
 public:
 	Toolbar(DrawingApi* api, Rectangle* form);
 	Toolbar(DrawingApi* api, Rectangle* form, std::vector<Shape*> shapes);
@@ -25,6 +26,7 @@ public:
 	Color* getColorFill();
 	Color* getColorLine();
 	std::vector<Vector2*> getBounds();
+	void addShape(Shape* shape);
 };
 
 #endif // !TOOLBAR_HPP
