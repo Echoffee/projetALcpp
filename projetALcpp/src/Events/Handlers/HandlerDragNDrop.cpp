@@ -39,7 +39,8 @@ bool HandlerDragNDrop::task(Event* e, App* env)
 		}
 
 		if (e->type == EventType::MouseButtonUp && e->keyid == 0) {
-			if (env->isOnCanvas(e->mousePosition))
+			std::vector<Vector2*> bounds = ghostShape->getBounds();
+			if (env->isOnCanvas(bounds.at(0)) && env->isOnCanvas(bounds.at(1)))
 				deltaNew = e->mousePosition;
 			else
 				deltaNew = startPos;

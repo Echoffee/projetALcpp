@@ -69,16 +69,17 @@ void App::run() {
 	CompositeShape* gr3 = new CompositeShape();
 	gr3->addShape(gr1);
 	gr3->addShape(gr2);
-
+	for (int i = 0; i < 200; i++)
+		shapes.push_back(new Rectangle(drawingApi, 70 + 5 * i, 70 + 5 * i, 20, 25));
 	shapes.push_back(gr3);
 	/*CompositeShape* gr1 = new CompositeShape();
 	gr1->addShape(rect);
 	gr1->addShape(rect2);
 	shapes.push_back(gr1);*/
 	//TODO
+	bool dirty = true;
 	while (uiApi->isRunning()) {
 		Event e;
-
 		while (uiApi->getEvent(&e)) {
 			eventHandler->handle(&e, this);
 		}
@@ -86,7 +87,11 @@ void App::run() {
 		while (commands.size() > 0) {
 			commands.front()->execute();
 			commands.pop();
+			dirty = true;
 		}
+
+		if (dirty) {
+
 		drawingApi->clear();
 		//Drawing stuff
 		//drawingApi->drawShape(rect->getPoints());
@@ -100,6 +105,8 @@ void App::run() {
 		//
 		drawingApi->render();
 		uiApi->displayWindow();
+		dirty = false;
+		}
 	}
 }
 

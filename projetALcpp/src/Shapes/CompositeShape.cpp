@@ -88,6 +88,27 @@ Color * CompositeShape::getColorLine()
 	return new Color(255, 0, 0, 128);
 }
 
+std::vector<Vector2*> CompositeShape::getBounds()
+{
+	std::vector<Vector2*> result = std::vector<Vector2*>();
+	std::vector<Vector2*> points = shapes.at(0)->getBounds();
+	Vector2* tl = new Vector2(points.at(0)->x, points.at(0)->y);
+	Vector2* br = new Vector2(points.at(0)->x, points.at(0)->y);
+	for (auto s : shapes) {
+		std::vector<Vector2*> tmpoints = s->getBounds();
+		Vector2* p1 = tmpoints.at(0);
+		Vector2* p2 = tmpoints.at(1);
+		tl->x = (p1->x < tl->x ? p1->x : tl->x);
+		tl->y = (p1->y < tl->y ? p1->y : tl->y);
+		br->x = (p2->x > br->x ? p2->x : br->x);
+		br->y = (p2->y > br->y ? p2->y : br->y);
+	}
+
+	result.push_back(tl);
+	result.push_back(br);
+	return result;
+}
+
 void CompositeShape::accept(Visitor* visitor) {
 	visitor->visit(this);
 	std::vector<Shape*> newShapes;

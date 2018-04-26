@@ -20,6 +20,7 @@ public:
 	virtual void setColorFill(Color* c) = 0;
 	virtual Color* getColorLine() = 0;
 	virtual void setColorLine(Color* c) = 0;
+	virtual std::vector<Vector2*> getBounds() = 0;
 	//Methods for memento pattern 
 	virtual void setMemento(Memento* m) = 0;
 	virtual Memento* createMemento() = 0;

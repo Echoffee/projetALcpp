@@ -35,6 +35,7 @@ public:
 	void setColorLine(Color* color);
 	Color* getColorFill();
 	Color* getColorLine();
+	std::vector<Vector2*> getBounds();
 };
 
 #endif
